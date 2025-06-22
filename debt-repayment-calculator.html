@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debt Repayment Calculator - Plan Your Debt Payoff</title>
+    <meta name="description" content="Calculate your debt repayment plan with our free, responsive Debt Repayment Calculator. Estimate monthly payments and total interest.">
+    <meta name="keywords" content="debt repayment calculator, loan calculator, financial planner, debt payoff tool, free financial tool">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Debt Repayment Calculator - Plan Your Debt Payoff">
+    <meta property="og:description" content="Use our free Debt Repayment Calculator to estimate monthly payments, payoff time, and total interest. Mobile-friendly and easy to use.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/debt-repayment-calculator">
+    <meta property="og:image" content="https://yourwebsite.com/images/debt-repayment-calculator-og-image.jpg">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Debt Repayment Calculator - Plan Your Debt Payoff">
+    <meta name="twitter:description" content="Use our free Debt Repayment Calculator to estimate monthly payments, payoff time, and total interest. Mobile-friendly and easy to use.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/debt-repayment-calculator-og-image.jpg">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        .navbar, .footer {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link, .footer a {
+            color: white !important;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .result-box {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .ad-gate {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5rem;
+        }
+    </style>
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Debt Repayment Calculator",
+        "description": "A free online tool to calculate your debt repayment plan, including monthly payments and total interest.",
+        "url": "https://yourwebsite.com/debt-repayment-calculator",
+        "applicationCategory": "Finance",
+        "operatingSystem": "All"
+    }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Debt Repayment Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i>Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 calculator-box">
+                <h2 class="text-center mb-4">Debt Repayment Calculator</h2>
+                <form id="debtForm">
+                    <div class="mb-3">
+                        <label for="loanAmount" class="form-label">Loan Amount (USD):</label>
+                        <input type="number" class="form-control" id="loanAmount" placeholder="e.g., 10000" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="interestRate" class="form-label">Annual Interest Rate (%):</label>
+                        <input type="number" class="form-control" id="interestRate" placeholder="e.g., 5" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loanTerm" class="form-label">Loan Term (Years):</label>
+                        <input type="number" class="form-control" id="loanTerm" placeholder="e.g., 5" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Calculate Repayment</button>
+                </form>
+                <div id="result" class="result-box d-none">
+                    <h4>Result</h4>
+                    <p id="debtResult"></p>
+                </div>
+                <div id="adGate" class="ad-gate">
+                    <p>Please view this ad to continue using the calculator:</p>
+                    <a href="https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1" target="_blank" class="btn btn-warning">View Ad</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <h3>How to Use the Debt Repayment Calculator</h3>
+                <ol>
+                    <li>Enter the total loan amount in USD (e.g., 10000).</li>
+                    <li>Enter the annual interest rate as a percentage (e.g., 5).</li>
+                    <li>Enter the loan term in years (e.g., 5).</li>
+                    <li>Click the "Calculate Repayment" button to see your monthly payment, total interest, and total repayment.</li>
+                    <li>After every 3 uses, view a short ad to continue using the calculator.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google AdSense Placeholder -->
+    <div class="container text-center my-4">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="your-adsense-client-id" data-ad-slot="your-adsense-slot-id" data-ad-format="auto"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-4">
+        <div class="container text-center">
+            <div class="mb-3">
+                <a href="/privacy-policy.html">Privacy Policy</a> |
+                <a href="/terms-of-service.html">Terms of Service</a> |
+                <a href="/about-us.html">About Us</a> |
+                <a href="/contact-us.html">Contact Us</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        let usageCount = 0;
+        const maxUsage = 3;
+
+        document.getElementById('debtForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (usageCount >= maxUsage) {
+                document.getElementById('adGate').style.display = 'block';
+                return;
+            }
+
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            const annualInterestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+            const loanTermYears = parseInt(document.getElementById('loanTerm').value);
+
+            if (isNaN(loanAmount) || isNaN(annualInterestRate) || isNaN(loanTermYears) || loanAmount <= 0 || annualInterestRate < 0 || loanTermYears <= 0) {
+                alert('Please enter valid inputs for loan amount, interest rate, and loan term.');
+                return;
+            }
+
+            const monthlyInterestRate = annualInterestRate / 12;
+            const numberOfPayments = loanTermYears * 12;
+
+            // Monthly payment formula: P * [r(1+r)^n] / [(1+r)^n - 1]
+            const monthlyPayment = loanAmount * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+            const totalRepayment = monthlyPayment * numberOfPayments;
+            const totalInterest = totalRepayment - loanAmount;
+
+            document.getElementById('debtResult').innerHTML = `
+                Monthly Payment: $${monthlyPayment.toFixed(2)}<br>
+                Total Interest Paid: $${totalInterest.toFixed(2)}<br>
+                Total Repayment: $${totalRepayment.toFixed(2)}<br>
+                Payoff Time: ${loanTermYears} years (${numberOfPayments} months)
+            `;
+            document.getElementById('result').classList.remove('d-none');
+            usageCount++;
+            if (usageCount >= maxUsage) {
+                document.getElementById('adGate').style.display = 'block';
+            }
+        });
+
+        // Reset usage count after ad click
+        document.querySelector('.ad-gate a').addEventListener('click', function() {
+            usageCount = 0;
+            document.getElementById('adGate').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

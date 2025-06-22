@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Optimization -->
+    <title>Percentage Calculator - Compute Percentages</title>
+    <meta name="description" content="Calculate percentages easily with our Percentage Calculator. Perfect tool for quick percentage computations.">
+    <meta name="keywords" content="percentage calculator, percent calculator, calculate percentage, math calculator, percentage tool">
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Percentage Calculator - Percent Tool">
+    <meta property="og:description" content="Use our free Percentage Calculator to compute percentages or values accurately.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/percentage-calculator">
+    <meta property="og:image" content="https://yourwebsite.com/images/percentage-calculator.jpg">
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Percentage Calculator - Compute Percentages">
+    <meta name="twitter:description" content="Quickly calculate percentages with our easy-to-use Percentage Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/percentage-calculator.jpg">
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Percentage Calculator",
+      "description": "A tool to calculate percentages or values based on given inputs.",
+      "applicationCategory": "Education",
+      "operatingSystem": "All",
+      "url": "https://yourwebsite.com/percentage-calculator"
+    }
+    </script>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar, .footer {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link, .footer a {
+            color: white !important;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #0056b3;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #003d80;
+        }
+        .form-control {
+            border-radius: 8px;
+        }
+        .result-box {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .hamburger-menu {
+            font-size: 24px;
+        }
+        .footer .ad-sense {
+            height: 100px;
+            background-color: #ddd;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 8px;
+        }
+        .footer a {
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .footer .social-icons i {
+            margin-right: 10px;
+        }
+        @media (max-width: 576px) {
+            .footer .col-md-4 {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-home me-2"></i>Back to Home</a>
+            <button class="navbar-toggler hamburger-menu" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#how-to-use">How to Use</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html" target="_blank">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html" target="_blank">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Percentage Calculator</h1>
+        
+        <!-- Percentage Calculator Form -->
+        <div class="card p-4 mb-4">
+            <form id="percentageForm">
+                <div class="mb-3">
+                    <label for="value" class="form-label">Value Obtained</label>
+                    <input type="number" class="form-control" id="value" placeholder="Enter value" min="0" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                    <label for="total" class="form-label">Total Value</label>
+                    <input type="number" class="form-control" id="total" placeholder="Enter total" min="0" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                    <label for="percent" class="form-label">Percentage (Optional)</label>
+                    <input type="number" class="form-control" id="percent" placeholder="Enter percentage" min="0" max="100" step="0.01">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+        </div>
+
+        <!-- Result Box -->
+        <div class="result-box d-none" id="resultBox">
+            <h3>Percentage: <span id="percentageResult">0.00%</span></h3>
+            <h3>Value from Percentage: <span id="valueResult">0.00</span></h3>
+        </div>
+
+        <!-- How to Use Section -->
+        <section id="how-to-use" class="my-5">
+            <h2>How to Use the Percentage Calculator</h2>
+            <ol>
+                <li>Enter the value obtained.</li>
+                <li>Input the total value.</li>
+                <li>(Optional) Enter a percentage to calculate the corresponding value.</li>
+                <li>Click "Calculate" to see the percentage or value result.</li>
+            </ol>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="privacy.html" target="_blank">Privacy Policy</a></li>
+                        <li><a href="terms.html" target="_blank">Terms of Service</a></li>
+                        <li><a href="about.html" target="_blank">About Us</a></li>
+                        <li><a href="contact.html" target="_blank">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect with Us</h5>
+                    <div class="social-icons">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Google AdSense Placeholder</h5>
+                    <div class="ad-sense">
+                        AdSense Ad Here
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let usageCount = 0;
+        const maxUses = 3;
+
+        // Load usage count from localStorage (if available)
+        if (localStorage.getItem('usageCount')) {
+            usageCount = parseInt(localStorage.getItem('usageCount'));
+        }
+
+        // Calculate Percentage
+        document.getElementById('percentageForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (usageCount >= maxUses) {
+                // Show ad after max uses
+                window.open('https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1', '_blank');
+                usageCount = 0; // Reset usage count after ad
+                localStorage.setItem('usageCount', usageCount);
+                return;
+            }
+
+            const value = parseFloat(document.getElementById('value').value);
+            const total = parseFloat(document.getElementById('total').value);
+            const percent = parseFloat(document.getElementById('percent').value);
+
+            if (!isNaN(value) && !isNaN(total) && total > 0) {
+                const percentage = (value / total) * 100;
+                document.getElementById('percentageResult').textContent = percentage.toFixed(2) + '%';
+                if (!isNaN(percent) && percent >= 0 && percent <= 100) {
+                    const valueFromPercent = (percent / 100) * total;
+                    document.getElementById('valueResult').textContent = valueFromPercent.toFixed(2);
+                } else {
+                    document.getElementById('valueResult').textContent = '0.00';
+                }
+                document.getElementById('resultBox').classList.remove('d-none');
+                usageCount++;
+                localStorage.setItem('usageCount', usageCount);
+
+                if (usageCount >= maxUses) {
+                    // Show ad after reaching max uses
+                    window.open('https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1', '_blank');
+                    usageCount = 0; // Reset usage count after ad
+                    localStorage.setItem('usageCount', usageCount);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

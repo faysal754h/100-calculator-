@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering Cost Calculator - Budget & Quantities</title>
+    <meta name="description" content="Plan your catering with our free Catering Cost Calculator. Calculate total costs, per-guest costs, and estimate food and drink quantities.">
+    <meta name="keywords" content="catering cost calculator, catering budget, per-guest costs, food quantities, event catering">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Catering Cost Calculator">
+    <meta property="og:description" content="Calculate catering costs and estimate food/drink quantities with our free Catering Cost Calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/catering-cost-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Catering Cost Calculator">
+    <meta name="twitter:description" content="Simplify your catering planning with our Catering Cost Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/catering-cost-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Catering Cost Calculator",
+        "description": "A tool for calculating catering costs (e.g., food, drinks, service fees) and estimating food and drink quantities based on guest count.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Catering Cost Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Catering Cost Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="cateringForm">
+                <div class="input-group">
+                    <label for="guests" class="form-label">Number of Guests</label>
+                    <input type="number" class="form-control" id="guests" step="1" min="1" required>
+                </div>
+                <div class="input-group">
+                    <label for="foodCost" class="form-label">Food Cost per Person ($)</label>
+                    <input type="number" class="form-control" id="foodCost" step="0.01" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="drinkCost" class="form-label">Drink Cost per Person ($)</label>
+                    <input type="number" class="form-control" id="drinkCost" step="0.01" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="serviceFee" class="form-label">Service Fee ($)</label>
+                    <input type="number" class="form-control" id="serviceFee" step="0.01" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="gratuityPercent" class="form-label">Gratuity (% - Optional)</label>
+                    <input type="number" class="form-control" id="gratuityPercent" step="0.01" min="0" max="100" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="taxPercent" class="form-label">Tax (% - Optional)</label>
+                    <input type="number" class="form-control" id="taxPercent" step="0.01" min="0" max="100" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="foodPortion" class="form-label">Food Portions per Guest (e.g., servings)</label>
+                    <input type="number" class="form-control" id="foodPortion" step="0.1" min="0" placeholder="1">
+                </div>
+                <div class="input-group">
+                    <label for="drinkServing" class="form-label">Drink Servings per Guest</label>
+                    <input type="number" class="form-control" id="drinkServing" step="0.1" min="0" placeholder="2">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Catering Cost Calculation Result</h4>
+                <p id="cateringResult"></p>
+                <p id="cateringSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Catering Cost Calculator</h2>
+            <ol>
+                <li>Enter the number of guests for your event.</li>
+                <li>Input costs (e.g., food, drinks, service fee) and optional gratuity/tax percentages.</li>
+                <li>Specify food portions and drink servings per guest for quantity estimates.</li>
+                <li>Click "Calculate" to see the total cost, per-guest cost, and estimated quantities.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Catering Cost Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        document.getElementById('cateringForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const guests = parseInt(document.getElementById('guests').value);
+            const foodCost = parseFloat(document.getElementById('foodCost').value) || 0;
+            const drinkCost = parseFloat(document.getElementById('drinkCost').value) || 0;
+            const serviceFee = parseFloat(document.getElementById('serviceFee').value) || 0;
+            const gratuityPercent = parseFloat(document.getElementById('gratuityPercent').value) || 0;
+            const taxPercent = parseFloat(document.getElementById('taxPercent').value) || 0;
+            const foodPortion = parseFloat(document.getElementById('foodPortion').value) || 1;
+            const drinkServing = parseFloat(document.getElementById('drinkServing').value) || 2;
+            let summary, errors = [];
+
+            // Validate inputs
+            if (isNaN(guests) || guests <= 0) {
+                errors.push('Number of guests must be a positive integer.');
+            }
+            if (foodCost < 0 || drinkCost < 0 || serviceFee < 0) {
+                errors.push('Costs cannot be negative.');
+            }
+            if (gratuityPercent < 0 || gratuityPercent > 100 || taxPercent < 0 || taxPercent > 100) {
+                errors.push('Gratuity and tax percentages must be between 0 and 100.');
+            }
+            if (foodPortion < 0 || drinkServing < 0) {
+                errors.push('Portions or servings cannot be negative.');
+            }
+
+            if (errors.length > 0) {
+                summary = `Errors:<br>${errors.join('<br>')}`;
+            } else {
+                // Perform calculations
+                const totalFoodCost = foodCost * guests;
+                const totalDrinkCost = drinkCost * guests;
+                const subtotal = totalFoodCost + totalDrinkCost + serviceFee;
+                const gratuityAmount = subtotal * (gratuityPercent / 100);
+                const taxAmount = subtotal * (taxPercent / 100);
+                const totalCost = subtotal + gratuityAmount + taxAmount;
+                const perGuestCost = totalCost / guests;
+                const totalFoodPortions = foodPortion * guests;
+                const totalDrinkServings = drinkServing * guests;
+
+                summary = `Catering for ${guests} guests:<br>`;
+                if (foodCost > 0) summary += `- Food: $${foodCost.toFixed(2)}/person × ${guests} = $${totalFoodCost.toFixed(2)}<br>`;
+                if (drinkCost > 0) summary += `- Drinks: $${drinkCost.toFixed(2)}/person × ${guests} = $${totalDrinkCost.toFixed(2)}<br>`;
+                if (serviceFee > 0) summary += `- Service Fee: $${serviceFee.toFixed(2)}<br>`;
+                summary += `- Subtotal: $${subtotal.toFixed(2)}<br>`;
+                if (gratuityPercent > 0) summary += `- Gratuity: ${gratuityPercent}% = $${gratuityAmount.toFixed(2)}<br>`;
+                if (taxPercent > 0) summary += `- Tax: ${taxPercent}% = $${taxAmount.toFixed(2)}<br>`;
+                summary += `<br>Total Cost: $${totalCost.toFixed(2)}<br>`;
+                summary += `Per-Guest Cost: $${perGuestCost.toFixed(2)}<br>`;
+                summary += `<br>Estimated Quantities:<br>`;
+                summary += `- Food: ${totalFoodPortions.toFixed(1)} portions<br>`;
+                summary += `- Drinks: ${totalDrinkServings.toFixed(1)} servings`;
+            }
+
+            document.getElementById('cateringResult').innerText = errors.length > 0 ? '' : `Total Cost: $${(totalFoodCost + totalDrinkCost + serviceFee + (totalFoodCost + totalDrinkCost + serviceFee) * (gratuityPercent + taxPercent) / 100).toFixed(2)}`;
+            document.getElementById('cateringSummary').innerHTML = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

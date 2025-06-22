@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Calculator - Area, Perimeter, Volume & More</title>
+    <meta name="description" content="Perform geometry calculations with our free Geometry Calculator. Solve for area, perimeter, and volume of shapes like triangles, rectangles, and cylinders.">
+    <meta name="keywords" content="geometry calculator, area calculator, perimeter calculator, volume calculator, triangle calculator, circle calculator">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Geometry Calculator">
+    <meta property="og:description" content="Solve geometry problems with our Geometry Calculator. Supports area, perimeter, and volume calculations for various shapes!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/geometry-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Geometry Calculator">
+    <meta name="twitter:description" content="Solve geometry problems with our Geometry Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/geometry-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Geometry Calculator",
+        "description": "A tool for geometry calculations including area, perimeter, and volume for shapes like triangles, rectangles, and cylinders.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "MathApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Geometry Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Geometry Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="geomForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Geometry Calculation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="triangleArea">Triangle Area (A = ½bh)</option>
+                        <option value="rectangleArea">Rectangle Area (A = lw)</option>
+                        <option value="circleArea">Circle Area (A = πr²)</option>
+                        <option value="rectanglePerimeter">Rectangle Perimeter (P = 2(l + w))</option>
+                        <option value="circleCircumference">Circle Circumference (C = 2πr)</option>
+                        <option value="cubeVolume">Cube Volume (V = s³)</option>
+                        <option value="cylinderVolume">Cylinder Volume (V = πr²h)</option>
+                    </select>
+                </div>
+                <div class="input-group" id="input1Group">
+                    <label for="input1" class="form-label">Input 1 (e.g., Base, Length, Radius, Side)</label>
+                    <input type="number" class="form-control" id="input1" step="any" required>
+                </div>
+                <div class="input-group" id="input2Group" style="display: none;">
+                    <label for="input2" class="form-label">Input 2 (e.g., Height, Width)</label>
+                    <input type="number" class="form-control" id="input2" step="any">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Geometry Calculation Result</h4>
+                <p id="geomResult"></p>
+                <p id="geomSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Geometry Calculator</h2>
+            <ol>
+                <li>Select a geometry calculation (e.g., triangle area, cylinder volume).</li>
+                <li>Enter the required inputs based on the calculation (e.g., base, height, radius).</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Geometry Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle input fields based on operation
+        document.getElementById('operation').addEventListener('change', function() {
+            const operation = this.value;
+            const input2Group = document.getElementById('input2Group');
+            const input2 = document.getElementById('input2');
+
+            // Reset visibility and requirements
+            input2Group.style.display = 'none';
+            input2.required = false;
+
+            // Set input labels and visibility based on operation
+            if (operation === 'triangleArea') {
+                input2Group.style.display = 'block';
+                document.getElementById('input1').previousElementSibling.innerText = 'Base (b, units)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Height (h, units)';
+                input2.required = true;
+            } else if (operation === 'rectangleArea') {
+                input2Group.style.display = 'block';
+                document.getElementById('input1').previousElementSibling.innerText = 'Length (l, units)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Width (w, units)';
+                input2.required = true;
+            } else if (operation === 'circleArea') {
+                document.getElementById('input1').previousElementSibling.innerText = 'Radius (r, units)';
+            } else if (operation === 'rectanglePerimeter') {
+                input2Group.style.display = 'block';
+                document.getElementById('input1').previousElementSibling.innerText = 'Length (l, units)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Width (w, units)';
+                input2.required = true;
+            } else if (operation === 'circleCircumference') {
+                document.getElementById('input1').previousElementSibling.innerText = 'Radius (r, units)';
+            } else if (operation === 'cubeVolume') {
+                document.getElementById('input1').previousElementSibling.innerText = 'Side Length (s, units)';
+            } else if (operation === 'cylinderVolume') {
+                input2Group.style.display = 'block';
+                document.getElementById('input1').previousElementSibling.innerText = 'Radius (r, units)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Height (h, units)';
+                input2.required = true;
+            }
+        });
+
+        document.getElementById('geomForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const input1 = parseFloat(document.getElementById('input1').value);
+            const input2 = parseFloat(document.getElementById('input2').value);
+            let result, summary;
+
+            // Validate inputs
+            if (input1 <= 0 || (input2 <= 0 && ['triangleArea', 'rectangleArea', 'rectanglePerimeter', 'cylinderVolume'].includes(operation))) {
+                summary = `Error: All inputs must be positive.`;
+            } else {
+                // Perform calculation
+                switch (operation) {
+                    case 'triangleArea':
+                        result = 0.5 * input1 * input2; // A = ½bh
+                        summary = `Triangle Area: ½ × ${input1} × ${input2} = ${result.toFixed(2)} square units`;
+                        break;
+                    case 'rectangleArea':
+                        result = input1 * input2; // A = lw
+                        summary = `Rectangle Area: ${input1} × ${input2} = ${result.toFixed(2)} square units`;
+                        break;
+                    case 'circleArea':
+                        result = Math.PI * input1 * input1; // A = πr²
+                        summary = `Circle Area: π × ${input1}² = ${result.toFixed(2)} square units`;
+                        break;
+                    case 'rectanglePerimeter':
+                        result = 2 * (input1 + input2); // P = 2(l + w)
+                        summary = `Rectangle Perimeter: 2 × (${input1} + ${input2}) = ${result.toFixed(2)} units`;
+                        break;
+                    case 'circleCircumference':
+                        result = 2 * Math.PI * input1; // C = 2πr
+                        summary = `Circle Circumference: 2 × π × ${input1} = ${result.toFixed(2)} units`;
+                        break;
+                    case 'cubeVolume':
+                        result = input1 * input1 * input1; // V = s³
+                        summary = `Cube Volume: ${input1}³ = ${result.toFixed(2)} cubic units`;
+                        break;
+                    case 'cylinderVolume':
+                        result = Math.PI * input1 * input1 * input2; // V = πr²h
+                        summary = `Cylinder Volume: π × ${input1}² × ${input2} = ${result.toFixed(2)} cubic units`;
+                        break;
+                }
+            }
+
+            document.getElementById('geomResult').innerText = summary.includes('Error') ? '' : `Result: ${result.toFixed(2)}`;
+            document.getElementById('geomSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

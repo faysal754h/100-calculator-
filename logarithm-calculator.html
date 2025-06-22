@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logarithm Calculator - Common, Natural, Custom Base</title>
+    <meta name="description" content="Calculate logarithms (common, natural, or custom base) with our free Logarithm Calculator. Enter a number and base for accurate results.">
+    <meta name="keywords" content="logarithm calculator, log calculator, natural log calculator, math tool">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Logarithm Calculator">
+    <meta property="og:description" content="Solve logarithms easily with our Logarithm Calculator. Get accurate results for common, natural, or custom base logs!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/logarithm-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Logarithm Calculator">
+    <meta name="twitter:description" content="Solve logarithms easily with our Logarithm Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/logarithm-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Logarithm Calculator",
+        "description": "A tool to calculate logarithms (common, natural, or custom base) based on number and base inputs.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "MathApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Logarithm Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Logarithm Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="logForm">
+                <div class="mb-3">
+                    <label for="logType" class="form-label">Logarithm Type</label>
+                    <select class="form-control" id="logType" required>
+                        <option value="common">Common Log (base 10)</option>
+                        <option value="natural">Natural Log (base e)</option>
+                        <option value="custom">Custom Base</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="number" class="form-label">Number (positive)</label>
+                    <input type="number" class="form-control" id="number" min="0.0001" step="0.0001" required>
+                </div>
+                <div class="mb-3" id="baseInput" style="display: none;">
+                    <label for="base" class="form-label">Custom Base (positive, not 1)</label>
+                    <input type="number" class="form-control" id="base" min="0.0001" step="0.0001">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate Logarithm</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Logarithm Result</h4>
+                <p id="logResult"></p>
+                <p id="logSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Logarithm Calculator</h2>
+            <ol>
+                <li>Select the logarithm type (common, natural, or custom base).</li>
+                <li>Enter a positive number to calculate its logarithm.</li>
+                <li>If choosing custom base, enter a positive base (not 1).</li>
+                <li>Click the "Calculate Logarithm" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Logarithm Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle base input based on logarithm type
+        document.getElementById('logType').addEventListener('change', function() {
+            const logType = this.value;
+            const baseInput = document.getElementById('baseInput');
+            if (logType === 'custom') {
+                baseInput.style.display = 'block';
+                document.getElementById('base').required = true;
+            } else {
+                baseInput.style.display = 'none';
+                document.getElementById('base').required = false;
+            }
+        });
+
+        document.getElementById('logForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const logType = document.getElementById('logType').value;
+            const number = parseFloat(document.getElementById('number').value);
+            let result, summary;
+
+            if (number <= 0) {
+                summary = `Error: The number must be positive.`;
+                document.getElementById('logResult').innerText = '';
+                document.getElementById('logSummary').innerText = summary;
+                document.getElementById('resultBox').style.display = 'block';
+                return;
+            }
+
+            if (logType === 'common') {
+                result = Math.log10(number);
+                summary = `The common logarithm (base 10) of ${number} is approximately ${result.toFixed(4)}.`;
+            } else if (logType === 'natural') {
+                result = Math.log(number);
+                summary = `The natural logarithm (base e) of ${number} is approximately ${result.toFixed(4)}.`;
+            } else {
+                const base = parseFloat(document.getElementById('base').value);
+                if (base <= 0 || base === 1) {
+                    summary = `Error: The base must be positive and not equal to 1.`;
+                    document.getElementById('logResult').innerText = '';
+                    document.getElementById('logSummary').innerText = summary;
+                    document.getElementById('resultBox').style.display = 'block';
+                    return;
+                }
+                result = Math.log(number) / Math.log(base); // Change of base formula
+                summary = `The logarithm of ${number} with base ${base} is approximately ${result.toFixed(4)}.`;
+            }
+
+            document.getElementById('logResult').innerText = `Result: ${result.toFixed(4)}`;
+            document.getElementById('logSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

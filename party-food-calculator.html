@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party Food Calculator - Quantities & Costs</title>
+    <meta name="description" content="Plan your party with our free Party Food Calculator. Estimate food and drink quantities and costs based on guests and event duration.">
+    <meta name="keywords" content="party food calculator, food quantities, drink quantities, party planning, event costs">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Party Food Calculator">
+    <meta property="og:description" content="Calculate food and drink quantities and costs for your party with our free Party Food Calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/party-food-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Party Food Calculator">
+    <meta name="twitter:description" content="Simplify your party planning with our Party Food Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/party-food-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Party Food Calculator",
+        "description": "A tool for calculating food and drink quantities and costs for a party based on guest count and event duration.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .food-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .food-row input, .food-row select {
+            flex: 1;
+        }
+        .remove-btn {
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Party Food Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Party Food Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="partyForm">
+                <div class="input-group">
+                    <label for="guests" class="form-label">Number of Guests</label>
+                    <input type="number" class="form-control" id="guests" step="1" min="1" required>
+                </div>
+                <div class="input-group">
+                    <label for="duration" class="form-label">Event Duration (hours)</label>
+                    <input type="number" class="form-control" id="duration" step="0.5" min="0.5" required>
+                </div>
+                <div class="input-group">
+                    <label class="form-label">Food Items</label>
+                    <div id="foodList">
+                        <div class="food-row">
+                            <input type="text" class="form-control" placeholder="Food Item (e.g., Pizza)" required>
+                            <select class="form-control" required>
+                                <option value="appetizer">Appetizer</option>
+                                <option value="main">Main Course</option>
+                                <option value="dessert">Dessert</option>
+                            </select>
+                            <input type="number" class="form-control" placeholder="Servings per Guest" step="0.1" min="0" required>
+                            <input type="number" class="form-control" placeholder="Cost per Serving ($)" step="0.01" min="0" placeholder="0">
+                            <button type="button" class="btn btn-danger remove-btn" style="display: none;">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary mb-3" id="addFood">Add Food Item</button>
+                </div>
+                <div class="input-group">
+                    <label class="form-label">Drink Items</label>
+                    <div id="drinkList">
+                        <div class="food-row">
+                            <input type="text" class="form-control" placeholder="Drink Item (e.g., Soda)" required>
+                            <input type="number" class="form-control" placeholder="Servings per Guest" step="0.1" min="0" required>
+                            <input type="number" class="form-control" placeholder="Cost per Serving ($)" step="0.01" min="0" placeholder="0">
+                            <button type="button" class="btn btn-danger remove-btn" style="display: none;">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary mb-3" id="addDrink">Add Drink Item</button>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Party Food Calculation Result</h4>
+                <p id="partyResult"></p>
+                <p id="partySummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Party Food Calculator</h2>
+            <ol>
+                <li>Enter the number of guests and event duration (in hours).</li>
+                <li>Add food and drink items, specifying type, servings per guest, and optional cost per serving.</li>
+                <li>Click "Calculate" to see total food/drink quantities and costs (if provided).</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Party Food Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Add new food item row
+        document.getElementById('addFood').addEventListener('click', function() {
+            const foodList = document.getElementById('foodList');
+            const newRow = document.createElement('div');
+            newRow.className = 'food-row';
+            newRow.innerHTML = `
+                <input type="text" class="form-control" placeholder="Food Item (e.g., Pizza)" required>
+                <select class="form-control" required>
+                    <option value="appetizer">Appetizer</option>
+                    <option value="main">Main Course</option>
+                    <option value="dessert">Dessert</option>
+                </select>
+                <input type="number" class="form-control" placeholder="Servings per Guest" step="0.1" min="0" required>
+                <input type="number" class="form-control" placeholder="Cost per Serving ($)" step="0.01" min="0" placeholder="0">
+                <button type="button" class="btn btn-danger remove-btn">Remove</button>
+            `;
+            foodList.appendChild(newRow);
+            updateRemoveButtons('foodList');
+        });
+
+        // Add new drink item row
+        document.getElementById('addDrink').addEventListener('click', function() {
+            const drinkList = document.getElementById('drinkList');
+            const newRow = document.createElement('div');
+            newRow.className = 'food-row';
+            newRow.innerHTML = `
+                <input type="text" class="form-control" placeholder="Drink Item (e.g., Soda)" required>
+                <input type="number" class="form-control" placeholder="Servings per Guest" step="0.1" min="0" required>
+                <input type="number" class="form-control" placeholder="Cost per Serving ($)" step="0.01" min="0" placeholder="0">
+                <button type="button" class="btn btn-danger remove-btn">Remove</button>
+            `;
+            drinkList.appendChild(newRow);
+            updateRemoveButtons('drinkList');
+        });
+
+        // Update remove buttons visibility
+        function updateRemoveButtons(listId) {
+            const rows = document.querySelectorAll(`#${listId} .food-row`);
+            rows.forEach((row, index) => {
+                const removeBtn = row.querySelector('.remove-btn');
+                removeBtn.style.display = rows.length > 1 ? 'block' : 'none';
+                removeBtn.onclick = () => row.remove();
+            });
+        }
+
+        document.getElementById('partyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const guests = parseInt(document.getElementById('guests').value);
+            const duration = parseFloat(document.getElementById('duration').value);
+            const foodRows = document.querySelectorAll('#foodList .food-row');
+            const drinkRows = document.querySelectorAll('#drinkList .food-row');
+            let errors = [];
+
+            // Validate inputs
+            if (isNaN(guests) || guests <= 0) {
+                errors.push('Number of guests must be a positive integer.');
+            }
+            if (isNaN(duration) || duration < 0.5) {
+                errors.push('Event duration must be at least 0.5 hours.');
+            }
+
+            let totalFoodServings = 0, totalDrinkServings = 0, totalCost = 0;
+            let foodSummary = 'Food Quantities:<br>', costSummary = 'Costs:<br>';
+
+            // Validate food items
+            foodRows.forEach((row, index) => {
+                const name = row.children[0].value.trim();
+                const type = row.children[1].value;
+                const servings = parseFloat(row.children[2].value);
+                const cost = parseFloat(row.children[3].value) || 0;
+
+                if (!name) {
+                    errors.push(`Food Item ${index + 1}: Name is required.`);
+                }
+                if (isNaN(servings) || servings < 0) {
+                    errors.push(`Food Item ${index + 1}: Servings per guest must be non-negative.`);
+                }
+                if (cost < 0) {
+                    errors.push(`Food Item ${index + 1}: Cost per serving cannot be negative.`);
+                }
+            });
+
+            // Validate drink items
+            drinkRows.forEach((row, index) => {
+                const name = row.children[0].value.trim();
+                const servings = parseFloat(row.children[1].value);
+                const cost = parseFloat(row.children[2].value) || 0;
+
+                if (!name) {
+                    errors.push(`Drink Item ${index + 1}: Name is required.`);
+                }
+                if (isNaN(servings) || servings < 0) {
+                    errors.push(`Drink Item ${index + 1}: Servings per guest must be non-negative.`);
+                }
+                if (cost < 0) {
+                    errors.push(`Drink Item ${index + 1}: Cost per serving cannot be negative.`);
+                }
+            });
+
+            let summary;
+            if (errors.length > 0) {
+                summary = `Errors:<br>${errors.join('<br>')}`;
+            } else {
+                // Adjust servings based on duration (e.g., longer events need more servings)
+                const durationFactor = duration <= 2 ? 1 : duration <= 4 ? 1.5 : 2;
+
+                // Calculate food quantities and costs
+                foodRows.forEach(row => {
+                    const name = row.children[0].value.trim();
+                    const type = row.children[1].value;
+                    const servings = parseFloat(row.children[2].value);
+                    const cost = parseFloat(row.children[3].value) || 0;
+                    const totalServings = (servings * guests * durationFactor).toFixed(1);
+                    totalFoodServings += parseFloat(totalServings);
+                    const itemCost = (totalServings * cost).toFixed(2);
+                    totalCost += parseFloat(itemCost);
+                    foodSummary += `- ${name} (${type}): ${totalServings} servings<br>`;
+                    if (cost > 0) costSummary += `- ${name}: ${totalServings} servings × $${cost.toFixed(2)} = $${itemCost}<br>`;
+                });
+
+                // Calculate drink quantities and costs
+                drinkRows.forEach(row => {
+                    const name = row.children[0].value.trim();
+                    const servings = parseFloat(row.children[1].value);
+                    const cost = parseFloat(row.children[2].value) || 0;
+                    const totalServings = (servings * guests * durationFactor).toFixed(1);
+                    totalDrinkServings += parseFloat(totalServings);
+                    const itemCost = (totalServings * cost).toFixed(2);
+                    totalCost += parseFloat(itemCost);
+                    foodSummary += `- ${name} (Drink): ${totalServings} servings<br>`;
+                    if (cost > 0) costSummary += `- ${name}: ${totalServings} servings × $${cost.toFixed(2)} = $${itemCost}<br>`;
+                });
+
+                summary = `Party for ${guests} guests (${duration} hours):<br>`;
+                summary += foodSummary;
+                if (totalCost > 0) {
+                    summary += `<br>${costSummary}`;
+                    summary += `Total Cost: $${totalCost.toFixed(2)}<br>`;
+                    summary += `Per-Guest Cost: $${(totalCost / guests).toFixed(2)}`;
+                }
+            }
+
+            document.getElementById('partyResult').innerText = errors.length > 0 ? '' : `Total Food & Drink: ${totalFoodServings} food servings, ${totalDrinkServings} drink servings${totalCost > 0 ? `, Total Cost: $${totalCost.toFixed(2)}` : ''}`;
+            document.getElementById('partySummary').innerHTML = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+
+        // Initialize remove buttons
+        updateRemoveButtons('foodList');
+        updateRemoveButtons('drinkList');
+    </script>
+</body>
+</html>

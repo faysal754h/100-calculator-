@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance Calculator - Convert, Coordinates & More</title>
+    <meta name="description" content="Calculate distances with our free Distance Calculator. Convert between units, find straight-line distances using coordinates, or compute distance from speed and time.">
+    <meta name="keywords" content="distance calculator, unit conversion, straight-line distance, haversine formula, distance speed time">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Distance Calculator">
+    <meta property="og:description" content="Calculate distances easily with our Distance Calculator. Convert units, find distances between coordinates, or use speed and time!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/distance-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Distance Calculator">
+    <meta name="twitter:description" content="Calculate distances easily with our Distance Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/distance-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Distance Calculator",
+        "description": "A tool for distance calculations including unit conversion, straight-line distance between coordinates, and distance from speed and time.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Distance Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Distance Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="distanceForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Distance Calculation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="kmToMiles">Kilometers to Miles</option>
+                        <option value="milesToKm">Miles to Kilometers</option>
+                        <option value="straightLine">Straight-Line Distance (Coordinates)</option>
+                        <option value="speedTime">Distance from Speed and Time</option>
+                    </select>
+                </div>
+                <div class="input-group" id="input1Group">
+                    <label for="input1" class="form-label">Input 1 (Distance/Speed/Lat1)</label>
+                    <input type="number" class="form-control" id="input1" step="any" required>
+                </div>
+                <div class="input-group" id="input2Group" style="display: none;">
+                    <label for="input2" class="form-label">Input 2 (Time/Lon1)</label>
+                    <input type="number" class="form-control" id="input2" step="any">
+                </div>
+                <div class="input-group" id="input3Group" style="display: none;">
+                    <label for="input3" class="form-label">Input 3 (Lat2)</label>
+                    <input type="number" class="form-control" id="input3" step="any">
+                </div>
+                <div class="input-group" id="input4Group" style="display: none;">
+                    <label for="input4" class="form-label">Input 4 (Lon2)</label>
+                    <input type="number" class="form-control" id="input4" step="any">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Distance Calculation Result</h4>
+                <p id="distanceResult"></p>
+                <p id="distanceSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Distance Calculator</h2>
+            <ol>
+                <li>Select a distance calculation (e.g., kilometers to miles, straight-line distance).</li>
+                <li>Enter the required inputs (e.g., distance, coordinates, speed, time).</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Distance Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle input fields based on operation
+        document.getElementById('operation').addEventListener('change', function() {
+            const operation = this.value;
+            const input2Group = document.getElementById('input2Group');
+            const input3Group = document.getElementById('input3Group');
+            const input4Group = document.getElementById('input4Group');
+            const input2 = document.getElementById('input2');
+            const input3 = document.getElementById('input3');
+            const input4 = document.getElementById('input4');
+
+            // Reset visibility and requirements
+            input2Group.style.display = 'none';
+            input3Group.style.display = 'none';
+            input4Group.style.display = 'none';
+            input2.required = false;
+            input3.required = false;
+            input4.required = false;
+
+            // Set input labels and visibility based on operation
+            if (operation === 'kmToMiles' || operation === 'milesToKm') {
+                document.getElementById('input1').previousElementSibling.innerText = 'Distance';
+            } else if (operation === 'speedTime') {
+                input2Group.style.display = 'block';
+                input2.required = true;
+                document.getElementById('input1').previousElementSibling.innerText = 'Speed (km/h)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Time (hours)';
+            } else if (operation === 'straightLine') {
+                input2Group.style.display = 'block';
+                input3Group.style.display = 'block';
+                input4Group.style.display = 'block';
+                input2.required = true;
+                input3.required = true;
+                input4.required = true;
+                document.getElementById('input1').previousElementSibling.innerText = 'Latitude 1 (degrees)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Longitude 1 (degrees)';
+                document.getElementById('input3').previousElementSibling.innerText = 'Latitude 2 (degrees)';
+                document.getElementById('input4').previousElementSibling.innerText = 'Longitude 2 (degrees)';
+            }
+        });
+
+        document.getElementById('distanceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const input1 = parseFloat(document.getElementById('input1').value);
+            const input2 = parseFloat(document.getElementById('input2').value);
+            const input3 = parseFloat(document.getElementById('input3').value);
+            const input4 = parseFloat(document.getElementById('input4').value);
+            let result, summary;
+
+            // Validate inputs
+            if ((operation === 'kmToMiles' || operation === 'milesToKm') && input1 < 0) {
+                summary = `Error: Distance must be non-negative.`;
+            } else if (operation === 'speedTime' && (input1 < 0 || input2 < 0)) {
+                summary = `Error: Speed and time must be non-negative.`;
+            } else if (operation === 'straightLine' && (input1 < -90 || input1 > 90 || input3 < -90 || input3 > 90)) {
+                summary = `Error: Latitude must be between -90 and 90 degrees.`;
+            } else if (operation === 'straightLine' && (input2 < -180 || input2 > 180 || input4 < -180 || input4 > 180)) {
+                summary = `Error: Longitude must be between -180 and 180 degrees.`;
+            } else {
+                // Perform calculation
+                switch (operation) {
+                    case 'kmToMiles':
+                        result = input1 * 0.621371; // 1 km = 0.621371 miles
+                        summary = `Convert: ${input1} km × 0.621371 = ${result.toFixed(2)} miles`;
+                        break;
+                    case 'milesToKm':
+                        result = input1 * 1.60934; // 1 mile = 1.60934 km
+                        summary = `Convert: ${input1} miles × 1.60934 = ${result.toFixed(2)} km`;
+                        break;
+                    case 'straightLine':
+                        // Haversine formula to calculate distance between two points
+                        const R = 6371; // Earth's radius in km
+                        const lat1 = input1 * Math.PI / 180; // Convert to radians
+                        const lat2 = input3 * Math.PI / 180;
+                        const lon1 = input2 * Math.PI / 180;
+                        const lon2 = input4 * Math.PI / 180;
+                        const dLat = lat2 - lat1;
+                        const dLon = lon2 - lon1;
+                        const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+                        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                        result = R * c; // Distance in km
+                        summary = `Straight-Line Distance: ${input1}°N, ${input2}°E to ${input3}°N, ${input4}°E = ${result.toFixed(2)} km`;
+                        break;
+                    case 'speedTime':
+                        result = input1 * input2; // Distance = Speed × Time
+                        summary = `Distance: ${input1} km/h × ${input2} h = ${result.toFixed(2)} km`;
+                        break;
+                }
+            }
+
+            document.getElementById('distanceResult').innerText = summary.includes('Error') ? '' : `Result: ${result.toFixed(2)} ${operation === 'kmToMiles' ? 'miles' : operation === 'milesToKm' ? 'km' : 'km'}`;
+            document.getElementById('distanceSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

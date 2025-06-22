@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator - Math, Trig, Logs & More</title>
+    <meta name="description" content="Perform scientific calculations with our free Scientific Calculator. Supports arithmetic, trigonometric functions, logarithms, and more.">
+    <meta name="keywords" content="scientific calculator, math calculator, trigonometry calculator, logarithm calculator">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Scientific Calculator">
+    <meta property="og:description" content="Solve complex math problems with our Scientific Calculator. Supports arithmetic, trig, logs, and more!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/scientific-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Scientific Calculator">
+    <meta name="twitter:description" content="Solve complex math problems with our Scientific Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/scientific-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Scientific Calculator",
+        "description": "A tool for scientific calculations including arithmetic, trigonometric functions, logarithms, and more.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "MathApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Scientific Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Scientific Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="calcForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Operation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="add">Addition (+)</option>
+                        <option value="subtract">Subtraction (-)</option>
+                        <option value="multiply">Multiplication (×)</option>
+                        <option value="divide">Division (÷)</option>
+                        <option value="power">Power (x^y)</option>
+                        <option value="sqrt">Square Root (√x)</option>
+                        <option value="sin">Sine (sin)</option>
+                        <option value="cos">Cosine (cos)</option>
+                        <option value="tan">Tangent (tan)</option>
+                        <option value="arcsin">Inverse Sine (arcsin)</option>
+                        <option value="arccos">Inverse Cosine (arccos)</option>
+                        <option value="arctan">Inverse Tangent (arctan)</option>
+                        <option value="log10">Common Log (base 10)</option>
+                        <option value="ln">Natural Log (base e)</option>
+                        <option value="logCustom">Custom Base Log</option>
+                    </select>
+                </div>
+                <div class="input-group" id="input1Group">
+                    <label for="input1" class="form-label">Input 1 (Number or Angle in Degrees)</label>
+                    <input type="number" class="form-control" id="input1" step="any" required>
+                </div>
+                <div class="input-group" id="input2Group" style="display: none;">
+                    <label for="input2" class="form-label">Input 2 (Number or Base)</label>
+                    <input type="number" class="form-control" id="input2" step="any">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Calculation Result</h4>
+                <p id="calcResult"></p>
+                <p id="calcSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Scientific Calculator</h2>
+            <ol>
+                <li>Select the operation (e.g., addition, sine, logarithm).</li>
+                <li>Enter the required input(s). Use one input for square root, trig, or logs; two inputs for arithmetic or custom base log.</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Scientific Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle input fields based on operation
+        document.getElementById('operation').addEventListener('change', function() {
+            const operation = this.value;
+            const input2Group = document.getElementById('input2Group');
+            const input2 = document.getElementById('input2');
+            if (['add', 'subtract', 'multiply', 'divide', 'power', 'logCustom'].includes(operation)) {
+                input2Group.style.display = 'block';
+                input2.required = true;
+            } else {
+                input2Group.style.display = 'none';
+                input2.required = false;
+            }
+        });
+
+        document.getElementById('calcForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const input1 = parseFloat(document.getElementById('input1').value);
+            const input2 = parseFloat(document.getElementById('input2').value);
+            let result, summary;
+
+            // Validate inputs
+            if (['sqrt', 'log10', 'ln'].includes(operation) && input1 <= 0) {
+                summary = `Error: Input must be positive for ${operation}.`;
+            } else if (['arcsin', 'arccos'].includes(operation) && (input1 < -1 || input1 > 1)) {
+                summary = `Error: Input must be between -1 and 1 for ${operation}.`;
+            } else if (operation === 'divide' && input2 === 0) {
+                summary = `Error: Division by zero is undefined.`;
+            } else if (operation === 'logCustom' && (input1 <= 0 || input2 <= 0 || input2 === 1)) {
+                summary = `Error: Number and base must be positive, and base cannot be 1.`;
+            } else {
+                // Perform calculation
+                switch (operation) {
+                    case 'add':
+                        result = input1 + input2;
+                        summary = `${input1} + ${input2} = ${result.toFixed(4)}`;
+                        break;
+                    case 'subtract':
+                        result = input1 - input2;
+                        summary = `${input1} - ${input2} = ${result.toFixed(4)}`;
+                        break;
+                    case 'multiply':
+                        result = input1 * input2;
+                        summary = `${input1} × ${input2} = ${result.toFixed(4)}`;
+                        break;
+                    case 'divide':
+                        result = input1 / input2;
+                        summary = `${input1} ÷ ${input2} = ${result.toFixed(4)}`;
+                        break;
+                    case 'power':
+                        result = Math.pow(input1, input2);
+                        summary = `${input1}^${input2} = ${result.toFixed(4)}`;
+                        break;
+                    case 'sqrt':
+                        result = Math.sqrt(input1);
+                        summary = `√${input1} = ${result.toFixed(4)}`;
+                        break;
+                    case 'sin':
+                        result = Math.sin(input1 * Math.PI / 180);
+                        summary = `sin(${input1}°) = ${result.toFixed(4)}`;
+                        break;
+                    case 'cos':
+                        result = Math.cos(input1 * Math.PI / 180);
+                        summary = `cos(${input1}°) = ${result.toFixed(4)}`;
+                        break;
+                    case 'tan':
+                        if (Math.abs(Math.cos(input1 * Math.PI / 180)) < 0.0001) {
+                            summary = `Error: Tangent is undefined at ${input1}°.`;
+                        } else {
+                            result = Math.tan(input1 * Math.PI / 180);
+                            summary = `tan(${input1}°) = ${result.toFixed(4)}`;
+                        }
+                        break;
+                    case 'arcsin':
+                        result = Math.asin(input1) * 180 / Math.PI;
+                        summary = `arcsin(${input1}) = ${result.toFixed(2)}°`;
+                        break;
+                    case 'arccos':
+                        result = Math.acos(input1) * 180 / Math.PI;
+                        summary = `arccos(${input1}) = ${result.toFixed(2)}°`;
+                        break;
+                    case 'arctan':
+                        result = Math.atan(input1) * 180 / Math.PI;
+                        summary = `arctan(${input1}) = ${result.toFixed(2)}°`;
+                        break;
+                    case 'log10':
+                        result = Math.log10(input1);
+                        summary = `log10(${input1}) = ${result.toFixed(4)}`;
+                        break;
+                    case 'ln':
+                        result = Math.log(input1);
+                        summary = `ln(${input1}) = ${result.toFixed(4)}`;
+                        break;
+                    case 'logCustom':
+                        result = Math.log(input1) / Math.log(input2);
+                        summary = `log_${input2}(${input1}) = ${result.toFixed(4)}`;
+                        break;
+                }
+            }
+
+            document.getElementById('calcResult').innerText = summary.includes('Error') ? '' : `Result: ${result.toFixed(4)}`;
+            document.getElementById('calcSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

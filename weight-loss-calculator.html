@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Loss Calculator - Plan Your Calorie Needs</title>
+    <meta name="description" content="Calculate your daily calorie needs for weight loss with our free Weight Loss Calculator. Enter your weight, height, age, gender, activity level, and goal to get personalized recommendations.">
+    <meta name="keywords" content="weight loss calculator, calorie calculator, fitness calculator, diet planner">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Weight Loss Calculator">
+    <meta property="og:description" content="Plan your weight loss journey with our easy-to-use Weight Loss Calculator. Get personalized calorie recommendations!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/weight-loss-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Weight Loss Calculator">
+    <meta name="twitter:description" content="Plan your weight loss journey with our easy-to-use Weight Loss Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/weight-loss-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Weight Loss Calculator",
+        "description": "A tool to calculate daily calorie needs for weight loss based on weight, height, age, gender, activity level, and goal.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "HealthApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Weight Loss Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Weight Loss Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="weightLossForm">
+                <div class="mb-3">
+                    <label for="weight" class="form-label">Weight (kg)</label>
+                    <input type="number" class="form-control" id="weight" min="1" step="0.1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="height" class="form-label">Height (cm)</label>
+                    <input type="number" class="form-control" id="height" min="1" step="0.1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="age" class="form-label">Age (years)</label>
+                    <input type="number" class="form-control" id="age" min="1" step="1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-control" id="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="activityLevel" class="form-label">Activity Level</label>
+                    <select class="form-control" id="activityLevel" required>
+                        <option value="sedentary">Sedentary (little or no exercise)</option>
+                        <option value="light">Light (exercise 1-3 days/week)</option>
+                        <option value="moderate">Moderate (exercise 3-5 days/week)</option>
+                        <option value="active">Active (exercise 6-7 days/week)</option>
+                        <option value="veryActive">Very Active (intense exercise daily)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="weightLossGoal" class="form-label">Weight Loss Goal (kg per week)</label>
+                    <select class="form-control" id="weightLossGoal" required>
+                        <option value="0.5">0.5 kg (1 lb)</option>
+                        <option value="1">1 kg (2 lb)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate Calorie Needs</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Your Weight Loss Plan</h4>
+                <p id="bmr"></p>
+                <p id="tdee"></p>
+                <p id="calorieDeficit"></p>
+                <p id="weightLossSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Weight Loss Calculator</h2>
+            <ol>
+                <li>Enter your weight (kg), height (cm), age, gender, activity level, and weight loss goal.</li>
+                <li>Click the "Calculate Calorie Needs" button to see your results.</li>
+                <li>View your daily calorie needs and deficit to achieve your weight loss goal.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Weight Loss Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        document.getElementById('weightLossForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const activityLevel = document.getElementById('activityLevel').value;
+            const weightLossGoal = parseFloat(document.getElementById('weightLossGoal').value);
+
+            // Calculate BMR using Mifflin-St Jeor Equation
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+
+            // Adjust BMR for activity level to get TDEE
+            let activityMultiplier;
+            switch (activityLevel) {
+                case 'sedentary': activityMultiplier = 1.2; break;
+                case 'light': activityMultiplier = 1.375; break;
+                case 'moderate': activityMultiplier = 1.55; break;
+                case 'active': activityMultiplier = 1.725; break;
+                case 'veryActive': activityMultiplier = 1.9; break;
+            }
+            const tdee = bmr * activityMultiplier;
+
+            // Calculate calorie deficit (1 kg = 7700 calories, so 0.5 kg = 3850 calories/week)
+            const weeklyDeficit = weightLossGoal * 7700;
+            const dailyDeficit = weeklyDeficit / 7;
+            const targetCalories = tdee - dailyDeficit;
+
+            let summary = `To lose ${weightLossGoal} kg per week, consume approximately ${Math.round(targetCalories)} calories per day. Consult a healthcare professional before starting any weight loss plan.`;
+
+            document.getElementById('bmr').innerText = `Basal Metabolic Rate (BMR): ${Math.round(bmr)} calories/day`;
+            document.getElementById('tdee').innerText = `Total Daily Energy Expenditure (TDEE): ${Math.round(tdee)} calories/day`;
+            document.getElementById('calorieDeficit').innerText = `Daily Calorie Deficit: ${Math.round(dailyDeficit)} calories`;
+            document.getElementById('weightLossSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

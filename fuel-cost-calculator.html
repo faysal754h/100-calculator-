@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuel Cost Calculator - Trip Cost & Fuel Efficiency</title>
+    <meta name="description" content="Calculate fuel costs with our free Fuel Cost Calculator. Find total trip cost, fuel needed, or cost per mile/km based on distance, fuel efficiency, and fuel price.">
+    <meta name="keywords" content="fuel cost calculator, trip cost, fuel efficiency, cost per mile, cost per kilometer">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Fuel Cost Calculator">
+    <meta property="og:description" content="Calculate total fuel cost, fuel needed, or cost per mile/km with our free Fuel Cost Calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/fuel-cost-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fuel Cost Calculator">
+    <meta name="twitter:description" content="Calculate fuel costs easily with our Fuel Cost Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/fuel-cost-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Fuel Cost Calculator",
+        "description": "A tool for calculating fuel costs, including total trip cost, fuel needed, and cost per mile or kilometer.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Fuel Cost Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Fuel Cost Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="fuelForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Fuel Cost Calculation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="totalCost">Total Trip Cost</option>
+                        <option value="fuelNeeded">Fuel Needed</option>
+                        <option value="costPerUnit">Cost per Mile/Km</option>
+                    </select>
+                </div>
+                <div class="input-group" id="distanceGroup">
+                    <label for="distance" class="form-label">Distance (miles or km)</label>
+                    <input type="number" class="form-control" id="distance" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="efficiencyGroup">
+                    <label for="efficiency" class="form-label">Fuel Efficiency (miles/gallon or km/liter)</label>
+                    <input type="number" class="form-control" id="efficiency" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="priceGroup">
+                    <label for="price" class="form-label">Fuel Price (per gallon or liter)</label>
+                    <input type="number" class="form-control" id="price" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="unitGroup">
+                    <label for="unit" class="form-label">Unit</label>
+                    <select class="form-control" id="unit" required>
+                        <option value="miles">Miles/Gallon (US)</option>
+                        <option value="km">Kilometers/Liter (Metric)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Fuel Cost Calculation Result</h4>
+                <p id="fuelResult"></p>
+                <p id="fuelSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Fuel Cost Calculator</h2>
+            <ol>
+                <li>Select a fuel cost calculation (e.g., total trip cost, fuel needed, cost per mile/km).</li>
+                <li>Enter the distance, fuel efficiency, fuel price, and select the unit (miles/gallon or km/liter).</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Fuel Cost Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        document.getElementById('fuelForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const distance = parseFloat(document.getElementById('distance').value);
+            const efficiency = parseFloat(document.getElementById('efficiency').value);
+            const price = parseFloat(document.getElementById('price').value);
+            const unit = document.getElementById('unit').value;
+            let result, summary;
+
+            // Validate inputs
+            if (isNaN(distance) || distance <= 0) {
+                summary = `Error: Distance must be a positive number.`;
+            } else if (isNaN(efficiency) || efficiency <= 0) {
+                summary = `Error: Fuel efficiency must be a positive number.`;
+            } else if (isNaN(price) || price <= 0) {
+                summary = `Error: Fuel price must be a positive number.`;
+            } else {
+                // Perform calculation
+                const fuelNeeded = distance / efficiency; // Gallons or liters
+                const totalCost = fuelNeeded * price; // Total cost
+                const costPerUnit = totalCost / distance; // Cost per mile or km
+
+                switch (operation) {
+                    case 'totalCost':
+                        result = totalCost.toFixed(2);
+                        summary = `Total Fuel Cost for ${distance} ${unit === 'miles' ? 'miles' : 'km'} with ${efficiency} ${unit === 'miles' ? 'mpg' : 'km/l'} at $${price}/${unit === 'miles' ? 'gallon' : 'liter'} = $${result}`;
+                        break;
+                    case 'fuelNeeded':
+                        result = fuelNeeded.toFixed(2);
+                        summary = `Fuel Needed for ${distance} ${unit === 'miles' ? 'miles' : 'km'} with ${efficiency} ${unit === 'miles' ? 'mpg' : 'km/l'} = ${result} ${unit === 'miles' ? 'gallons' : 'liters'}`;
+                        break;
+                    case 'costPerUnit':
+                        result = costPerUnit.toFixed(2);
+                        summary = `Cost per ${unit === 'miles' ? 'Mile' : 'Kilometer'} for ${distance} ${unit === 'miles' ? 'miles' : 'km'} with ${efficiency} ${unit === 'miles' ? 'mpg' : 'km/l'} at $${price}/${unit === 'miles' ? 'gallon' : 'liter'} = $${result}/${unit === 'miles' ? 'mile' : 'km'}`;
+                        break;
+                }
+            }
+
+            document.getElementById('fuelResult').innerText = summary.includes('Error') ? '' : `Result: ${result}`;
+            document.getElementById('fuelSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

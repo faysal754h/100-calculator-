@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Party Budget Calculator - Cost & Planning</title>
+    <meta name="description" content="Plan your birthday party with our free Birthday Party Budget Calculator. Calculate total costs, per-guest costs, and budget allocations for food, drinks, and more.">
+    <meta name="keywords" content="birthday party budget calculator, party planning, per-guest costs, budget allocation, birthday cost">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Birthday Party Budget Calculator">
+    <meta property="og:description" content="Calculate birthday party costs and budget allocations with our free Birthday Party Budget Calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/birthday-party-budget-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Birthday Party Budget Calculator">
+    <meta name="twitter:description" content="Simplify your birthday party planning with our Budget Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/birthday-party-budget-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Birthday Party Budget Calculator",
+        "description": "A tool for calculating birthday party costs (e.g., food, drinks, venue, entertainment) and estimating per-guest costs and budget allocations.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .budget-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .budget-row input {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Birthday Party Budget Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Birthday Party Budget Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="partyForm">
+                <div class="input-group">
+                    <label for="guests" class="form-label">Number of Guests</label>
+                    <input type="number" class="form-control" id="guests" step="1" min="1" required>
+                </div>
+                <div class="input-group">
+                    <label for="foodCost" class="form-label">Food Cost per Person ($)</label>
+                    <input type="number" class="form-control" id="foodCost" step="0.01" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="drinkCost" class="form-label">Drink Cost per Person ($)</label>
+                    <input type="number" class="form-control" id="drinkCost" step="0.01" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="venueCost" class="form-label">Venue Cost ($)</label>
+                    <input type="number" class="form-control" id="venueCost" step="0.01" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="decorCost" class="form-label">Decorations Cost ($)</label>
+                    <input type="number" class="form-control" id="decorCost" step="0.01" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="entertainmentCost" class="form-label">Entertainment Cost ($)</label>
+                    <input type="number" class="form-control" id="entertainmentCost" step="0.01" min="0" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label class="form-label">Budget Allocation (% - Optional)</label>
+                    <div id="budgetList">
+                        <div class="budget-row">
+                            <input type="text" class="form-control" placeholder="Category (e.g., Food)" required>
+                            <input type="number" class="form-control" placeholder="Percentage (%)" step="0.01" min="0" max="100" required>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary mb-3" id="addBudget">Add Budget Category</button>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Birthday Party Budget Result</h4>
+                <p id="partyResult"></p>
+                <p id="partySummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Birthday Party Budget Calculator</h2>
+            <ol>
+                <li>Enter the number of guests for your birthday party.</li>
+                <li>Input costs (e.g., food, drinks, venue, decorations, entertainment).</li>
+                <li>Optionally, add budget categories and their percentage allocations (e.g., 30% for food).</li>
+                <li>Click "Calculate" to see the total cost, per-guest cost, and budget breakdown.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Birthday Party Budget Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Add new budget category row
+        document.getElementById('addBudget').addEventListener('click', function() {
+            const budgetList = document.getElementById('budgetList');
+            const newRow = document.createElement('div');
+            newRow.className = 'budget-row';
+            newRow.innerHTML = `
+                <input type="text" class="form-control" placeholder="Category (e.g., Food)" required>
+                <input type="number" class="form-control" placeholder="Percentage (%)" step="0.01" min="0" max="100" required>
+                <button type="button" class="btn btn-danger remove-btn">Remove</button>
+            `;
+            budgetList.appendChild(newRow);
+            updateRemoveButtons();
+        });
+
+        // Update remove buttons visibility
+        function updateRemoveButtons() {
+            const rows = document.querySelectorAll('.budget-row');
+            rows.forEach((row, index) => {
+                const removeBtn = row.querySelector('.remove-btn');
+                if (removeBtn) {
+                    removeBtn.style.display = rows.length > 1 ? 'block' : 'none';
+                    removeBtn.onclick = () => row.remove();
+                }
+            });
+        }
+
+        document.getElementById('partyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const guests = parseInt(document.getElementById('guests').value);
+            const foodCost = parseFloat(document.getElementById('foodCost').value) || 0;
+            const drinkCost = parseFloat(document.getElementById('drinkCost').value) || 0;
+            const venueCost = parseFloat(document.getElementById('venueCost').value) || 0;
+            const decorCost = parseFloat(document.getElementById('decorCost').value) || 0;
+            const entertainmentCost = parseFloat(document.getElementById('entertainmentCost').value) || 0;
+            const budgetRows = document.querySelectorAll('.budget-row');
+            let errors = [];
+
+            // Validate inputs
+            if (isNaN(guests) || guests <= 0) {
+                errors.push('Number of guests must be a positive integer.');
+            }
+            if (foodCost < 0 || drinkCost < 0 || venueCost < 0 || decorCost < 0 || entertainmentCost < 0) {
+                errors.push('Costs cannot be negative.');
+            }
+
+            // Validate budget percentages
+            let totalPercentage = 0;
+            budgetRows.forEach((row, index) => {
+                const category = row.children[0].value.trim();
+                const percentage = parseFloat(row.children[1].value);
+                if (!category) {
+                    errors.push(`Budget Category ${index + 1}: Name is required.`);
+                }
+                if (isNaN(percentage) || percentage < 0 || percentage > 100) {
+                    errors.push(`Budget Category ${index + 1}: Percentage must be between 0 and 100.`);
+                } else {
+                    totalPercentage += percentage;
+                }
+            });
+            if (totalPercentage > 100) {
+                errors.push('Total budget percentages cannot exceed 100%.');
+            }
+
+            let summary;
+            if (errors.length > 0) {
+                summary = `Errors:<br>${errors.join('<br>')}`;
+            } else {
+                // Perform calculations
+                const totalFoodCost = foodCost * guests;
+                const totalDrinkCost = drinkCost * guests;
+                const totalCost = totalFoodCost + totalDrinkCost + venueCost + decorCost + entertainmentCost;
+                const perGuestCost = totalCost / guests;
+
+                summary = `Birthday Party for ${guests} guests:<br>`;
+                if (foodCost > 0) summary += `- Food: $${foodCost.toFixed(2)}/person × ${guests} = $${totalFoodCost.toFixed(2)}<br>`;
+                if (drinkCost > 0) summary += `- Drinks: $${drinkCost.toFixed(2)}/person × ${guests} = $${totalDrinkCost.toFixed(2)}<br>`;
+                if (venueCost > 0) summary += `- Venue: $${venueCost.toFixed(2)}<br>`;
+                if (decorCost > 0) summary += `- Decorations: $${decorCost.toFixed(2)}<br>`;
+                if (entertainmentCost > 0) summary += `- Entertainment: $${entertainmentCost.toFixed(2)}<br>`;
+                summary += `<br>Total Cost: $${totalCost.toFixed(2)}<br>`;
+                summary += `Per-Guest Cost: $${perGuestCost.toFixed(2)}`;
+
+                // Budget allocation
+                if (budgetRows.length > 0 && totalPercentage > 0) {
+                    summary += `<br><br>Budget Allocation:<br>`;
+                    budgetRows.forEach(row => {
+                        const category = row.children[0].value.trim();
+                        const percentage = parseFloat(row.children[1].value);
+                        const allocatedAmount = (totalCost * (percentage / 100)).toFixed(2);
+                        summary += `- ${category}: ${percentage}% = $${allocatedAmount}<br>`;
+                    });
+                }
+            }
+
+            document.getElementById('partyResult').innerText = errors.length > 0 ? '' : `Total Cost: $${(foodCost * guests + drinkCost * guests + venueCost + decorCost + entertainmentCost).toFixed(2)}`;
+            document.getElementById('partySummary').innerHTML = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+
+        // Initialize remove buttons
+        updateRemoveButtons();
+    </script>
+</body>
+</html>

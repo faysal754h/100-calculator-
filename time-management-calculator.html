@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Management Calculator - Plan Your Daily Schedule</title>
+    <meta name="description" content="Plan your daily schedule with our free Time Management Calculator. Enter hours for work, sleep, and other activities to optimize your 24-hour day.">
+    <meta name="keywords" content="time management calculator, daily planner, schedule calculator, productivity tool">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Time Management Calculator">
+    <meta property="og:description" content="Optimize your day with our easy-to-use Time Management Calculator. Plan your schedule in seconds!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/time-management-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Time Management Calculator">
+    <meta name="twitter:description" content="Optimize your day with our easy-to-use Time Management Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/time-management-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Time Management Calculator",
+        "description": "A tool to plan daily schedules by allocating time for work, sleep, and other activities.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "ProductivityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Time Management Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Time Management Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="timeForm">
+                <div class="mb-3">
+                    <label for="workHours" class="form-label">Work Hours (per day)</label>
+                    <input type="number" class="form-control" id="workHours" min="0" max="24" step="0.1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="sleepHours" class="form-label">Sleep Hours (per day)</label>
+                    <input type="number" class="form-control" id="sleepHours" min="0" max="24" step="0.1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="personalHours" class="form-label">Personal Time (e.g., hobbies, exercise, per day)</label>
+                    <input type="number" class="form-control" id="personalHours" min="0" max="24" step="0.1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="otherHours" class="form-label">Other Activities (e.g., commuting, chores, per day)</label>
+                    <input type="number" class="form-control" id="otherHours" min="0" max="24" step="0.1" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate Time Allocation</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Your Daily Time Allocation</h4>
+                <p id="totalHours"></p>
+                <p id="remainingHours"></p>
+                <p id="timeSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Time Management Calculator</h2>
+            <ol>
+                <li>Enter the hours you spend daily on work, sleep, personal time, and other activities.</li>
+                <li>Click the "Calculate Time Allocation" button to see your results.</li>
+                <li>View your total allocated hours and remaining time for the day.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Time Management Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        document.getElementById('timeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const workHours = parseFloat(document.getElementById('workHours').value);
+            const sleepHours = parseFloat(document.getElementById('sleepHours').value);
+            const personalHours = parseFloat(document.getElementById('personalHours').value);
+            const otherHours = parseFloat(document.getElementById('otherHours').value);
+
+            const totalAllocatedHours = workHours + sleepHours + personalHours + otherHours;
+            const remainingHours = 24 - totalAllocatedHours;
+
+            let summary = '';
+            if (totalAllocatedHours > 24) {
+                summary = `Warning: You have allocated ${totalAllocatedHours.toFixed(1)} hours, which exceeds 24 hours. Reduce your inputs to fit within a day.`;
+            } else if (remainingHours > 0) {
+                summary = `You have ${remainingHours.toFixed(1)} hours remaining for additional activities or relaxation.`;
+            } else if (remainingHours === 0) {
+                summary = `Your schedule is fully allocated with no remaining time.`;
+            } else {
+                summary = `Error: Negative remaining time. Please check your inputs.`;
+            }
+
+            document.getElementById('totalHours').innerText = `Total Allocated Hours: ${totalAllocatedHours.toFixed(1)}`;
+            document.getElementById('remainingHours').innerText = `Remaining Hours: ${remainingHours.toFixed(1)}`;
+            document.getElementById('timeSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

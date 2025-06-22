@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator - Calculate Tips & Split Bills</title>
+    <meta name="description" content="Calculate tips easily with our free Tip Calculator. Enter bill amount, tip percentage, and split the bill among multiple people.">
+    <meta name="keywords" content="tip calculator, bill splitter, tip percentage, restaurant tip calculator">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tip Calculator">
+    <meta property="og:description" content="Calculate tips and split bills with our free Tip Calculator. Perfect for dining out!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/tip-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tip Calculator">
+    <meta name="twitter:description" content="Calculate tips and split bills with our free Tip Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/tip-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Tip Calculator",
+        "description": "A tool to calculate tip amounts, total bills, and split bills among multiple people.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "FinanceApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Tip Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Tip Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="tipForm">
+                <div class="input-group">
+                    <label for="billAmount" class="form-label">Bill Amount ($)</label>
+                    <input type="number" class="form-control" id="billAmount" step="0.01" required>
+                </div>
+                <div class="input-group">
+                    <label for="tipPercentage" class="form-label">Tip Percentage (%)</label>
+                    <input type="number" class="form-control" id="tipPercentage" step="0.1" required>
+                </div>
+                <div class="input-group">
+                    <label for="numPeople" class="form-label">Number of People (to split bill, optional)</label>
+                    <input type="number" class="form-control" id="numPeople" step="1" min="1" placeholder="1">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Tip Calculation Result</h4>
+                <p id="tipAmount"></p>
+                <p id="totalBill"></p>
+                <p id="perPerson"></p>
+                <p id="tipSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Tip Calculator</h2>
+            <ol>
+                <li>Enter the bill amount in dollars.</li>
+                <li>Enter the desired tip percentage.</li>
+                <li>Optionally, enter the number of people to split the bill.</li>
+                <li>Click the "Calculate" button to see the tip amount, total bill, and per-person amounts (if applicable).</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Tip Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        document.getElementById('tipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const billAmount = parseFloat(document.getElementById('billAmount').value);
+            const tipPercentage = parseFloat(document.getElementById('tipPercentage').value);
+            const numPeople = parseInt(document.getElementById('numPeople').value) || 1;
+            let tipAmount, totalBill, perPerson, summary;
+
+            // Validate inputs
+            if (billAmount <= 0) {
+                summary = `Error: Bill amount must be positive.`;
+            } else if (tipPercentage < 0) {
+                summary = `Error: Tip percentage cannot be negative.`;
+            } else if (numPeople < 1) {
+                summary = `Error: Number of people must be at least 1.`;
+            } else {
+                // Perform calculation
+                tipAmount = billAmount * (tipPercentage / 100); // Tip = Bill × (Tip % / 100)
+                totalBill = billAmount + tipAmount; // Total = Bill + Tip
+                perPerson = totalBill / numPeople; // Per person = Total / People
+                summary = `Tip: $${billAmount.toFixed(2)} × ${tipPercentage}% = $${tipAmount.toFixed(2)}<br>` +
+                          `Total Bill: $${billAmount.toFixed(2)} + $${tipAmount.toFixed(2)} = $${totalBill.toFixed(2)}`;
+                if (numPeople > 1) {
+                    summary += `<br>Per Person: $${totalBill.toFixed(2)} ÷ ${numPeople} = $${perPerson.toFixed(2)}`;
+                }
+            }
+
+            document.getElementById('tipAmount').innerText = summary.includes('Error') ? '' : `Tip Amount: $${tipAmount.toFixed(2)}`;
+            document.getElementById('totalBill').innerText = summary.includes('Error') ? '' : `Total Bill: $${totalBill.toFixed(2)}`;
+            document.getElementById('perPerson').innerText = summary.includes('Error') || numPeople === 1 ? '' : `Per Person: $${perPerson.toFixed(2)}`;
+            document.getElementById('tipSummary').innerHTML = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

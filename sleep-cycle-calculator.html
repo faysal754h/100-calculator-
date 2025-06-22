@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Cycle Calculator - Find Your Optimal Sleep Times</title>
+    <meta name="description" content="Calculate your optimal sleep and wake-up times with our free online Sleep Cycle Calculator. Enter the time you plan to fall asleep to get personalized results.">
+    <meta name="keywords" content="sleep cycle calculator, sleep calculator, wake-up time calculator, sleep schedule">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Sleep Cycle Calculator">
+    <meta property="og:description" content="Plan your sleep schedule with our easy-to-use sleep cycle calculator. Get optimal wake-up times in seconds!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/sleep-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sleep Cycle Calculator">
+    <meta name="twitter:description" content="Plan your sleep schedule with our easy-to-use sleep cycle calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/sleep-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Sleep Cycle Calculator",
+        "description": "A tool to calculate optimal sleep and wake-up times based on sleep cycles.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "HealthApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Sleep Cycle Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Sleep Cycle Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="sleepCycleForm">
+                <div class="mb-3">
+                    <label for="sleepTime" class="form-label">Time You Plan to Fall Asleep</label>
+                    <input type="time" class="form-control" id="sleepTime" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate Wake-Up Times</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Your Optimal Wake-Up Times</h4>
+                <p id="wakeUpTimes"></p>
+                <p><small>Note: Each sleep cycle is approximately 90 minutes. Results include time to fall asleep (15 minutes).</small></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Sleep Cycle Calculator</h2>
+            <ol>
+                <li>Enter the time you plan to fall asleep.</li>
+                <li>Click the "Calculate Wake-Up Times" button.</li>
+                <li>View your optimal wake-up times based on 90-minute sleep cycles.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Sleep Cycle Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        document.getElementById('sleepCycleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const sleepTime = document.getElementById('sleepTime').value;
+            const [hours, minutes] = sleepTime.split(':').map(Number);
+            const sleepDate = new Date();
+            sleepDate.setHours(hours, minutes, 0, 0);
+
+            // Add 15 minutes for falling asleep
+            const fallAsleepTime = new Date(sleepDate.getTime() + 15 * 60 * 1000);
+
+            // Calculate wake-up times for 3 to 6 sleep cycles (4.5 to 9 hours)
+            const cycleDuration = 90 * 60 * 1000; // 90 minutes in milliseconds
+            const wakeUpTimes = [];
+            for (let cycles = 3; cycles <= 6; cycles++) {
+                const wakeUpTime = new Date(fallAsleepTime.getTime() + cycles * cycleDuration);
+                const timeString = wakeUpTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                wakeUpTimes.push(`${cycles} cycles: ${timeString} (${(cycles * 1.5).toFixed(1)} hours)`);
+            }
+
+            document.getElementById('wakeUpTimes').innerText = wakeUpTimes.join('\n');
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

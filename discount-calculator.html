@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator - Sale Price & Savings</title>
+    <meta name="description" content="Calculate discounts with our free Discount Calculator. Find discounted price, savings, or original price with optional tax calculations.">
+    <meta name="keywords" content="discount calculator, sale price, savings, discount amount, original price">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Discount Calculator">
+    <meta property="og:description" content="Calculate discounted price, savings, or original price with our free Discount Calculator, including optional tax.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/discount-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Discount Calculator">
+    <meta name="twitter:description" content="Calculate discounts easily with our Discount Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/discount-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Discount Calculator",
+        "description": "A tool for calculating discounts, including discounted price, discount amount, and original price, with optional tax calculations.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Discount Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Discount Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="discountForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Discount Calculation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="discountedPrice">Discounted Price</option>
+                        <option value="discountAmount">Discount Amount</option>
+                        <option value="originalPrice">Original Price</option>
+                    </select>
+                </div>
+                <div class="input-group" id="originalPriceGroup">
+                    <label for="originalPrice" class="form-label">Original Price ($)</label>
+                    <input type="number" class="form-control" id="originalPrice" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="discountPercentGroup">
+                    <label for="discountPercent" class="form-label">Discount Percentage (%)</label>
+                    <input type="number" class="form-control" id="discountPercent" step="0.01" min="0" max="100" required>
+                </div>
+                <div class="input-group" id="discountedPriceGroup" style="display: none;">
+                    <label for="discountedPriceInput" class="form-label">Discounted Price ($)</label>
+                    <input type="number" class="form-control" id="discountedPriceInput" step="0.01" min="0">
+                </div>
+                <div class="input-group" id="taxGroup">
+                    <label for="taxRate" class="form-label">Tax Rate (%) (Optional)</label>
+                    <input type="number" class="form-control" id="taxRate" step="0.01" min="0" max="100" placeholder="0">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Discount Calculation Result</h4>
+                <p id="discountResult"></p>
+                <p id="discountSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Discount Calculator</h2>
+            <ol>
+                <li>Select a discount calculation (e.g., discounted price, discount amount, original price).</li>
+                <li>Enter the required inputs (e.g., original price, discount percentage, discounted price, optional tax rate).</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Discount Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle input fields based on operation
+        document.getElementById('operation').addEventListener('change', function() {
+            const operation = this.value;
+            const originalPriceGroup = document.getElementById('originalPriceGroup');
+            const discountPercentGroup = document.getElementById('discountPercentGroup');
+            const discountedPriceGroup = document.getElementById('discountedPriceGroup');
+            const originalPrice = document.getElementById('originalPrice');
+            const discountPercent = document.getElementById('discountPercent');
+            const discountedPriceInput = document.getElementById('discountedPriceInput');
+
+            // Reset visibility and requirements
+            originalPriceGroup.style.display = 'block';
+            discountPercentGroup.style.display = 'block';
+            discountedPriceGroup.style.display = 'none';
+            originalPrice.required = true;
+            discountPercent.required = true;
+            discountedPriceInput.required = false;
+
+            // Set input visibility based on operation
+            if (operation === 'originalPrice') {
+                originalPriceGroup.style.display = 'none';
+                discountedPriceGroup.style.display = 'block';
+                originalPrice.required = false;
+                discountedPriceInput.required = true;
+            }
+        });
+
+        document.getElementById('discountForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const originalPrice = parseFloat(document.getElementById('originalPrice').value);
+            const discountPercent = parseFloat(document.getElementById('discountPercent').value);
+            const discountedPriceInput = parseFloat(document.getElementById('discountedPriceInput').value);
+            const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+            let result, summary;
+
+            // Validate inputs
+            if (operation !== 'originalPrice' && (isNaN(originalPrice) || originalPrice <= 0)) {
+                summary = `Error: Original price must be a positive number.`;
+            } else if (isNaN(discountPercent) || discountPercent < 0 || discountPercent > 100) {
+                summary = `Error: Discount percentage must be between 0 and 100.`;
+            } else if (operation === 'originalPrice' && (isNaN(discountedPriceInput) || discountedPriceInput <= 0)) {
+                summary = `Error: Discounted price must be a positive number.`;
+            } else if (taxRate < 0 || taxRate > 100) {
+                summary = `Error: Tax rate must be between 0 and 100.`;
+            } else {
+                // Perform calculation
+                let discountedPrice, discountAmount, finalPrice;
+
+                switch (operation) {
+                    case 'discountedPrice':
+                        discountAmount = originalPrice * (discountPercent / 100);
+                        discountedPrice = originalPrice - discountAmount;
+                        finalPrice = discountedPrice * (1 + taxRate / 100);
+                        result = finalPrice.toFixed(2);
+                        summary = `Discounted Price: $${originalPrice} - ${discountPercent}% = $${discountedPrice.toFixed(2)}`;
+                        if (taxRate > 0) {
+                            summary += `, with ${taxRate}% tax = $${result}`;
+                        }
+                        break;
+                    case 'discountAmount':
+                        discountAmount = originalPrice * (discountPercent / 100);
+                        result = discountAmount.toFixed(2);
+                        summary = `Discount Amount: $${originalPrice} × ${discountPercent}% = $${result}`;
+                        break;
+                    case 'originalPrice':
+                        discountedPrice = discountedPriceInput / (1 + taxRate / 100); // Remove tax if any
+                        originalPrice = discountedPrice / (1 - discountPercent / 100);
+                        result = originalPrice.toFixed(2);
+                        summary = `Original Price: $${discountedPriceInput} / (1 - ${discountPercent}%)`;
+                        if (taxRate > 0) {
+                            summary += `, before ${taxRate}% tax`;
+                        }
+                        summary += ` = $${result}`;
+                        break;
+                }
+            }
+
+            document.getElementById('discountResult').innerText = summary.includes('Error') ? '' : `Result: $${result}`;
+            document.getElementById('discountSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

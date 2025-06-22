@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Calculator - Molarity, Moles, Mass Percent & More</title>
+    <meta name="description" content="Perform chemistry calculations with our free Chemistry Calculator. Solve for molarity, moles, mass percent, and ideal gas law.">
+    <meta name="keywords" content="chemistry calculator, molarity calculator, mole calculator, mass percent calculator, ideal gas law calculator">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Chemistry Calculator">
+    <meta property="og:description" content="Solve chemistry problems with our Chemistry Calculator. Supports molarity, moles, mass percent, and ideal gas law calculations!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/chemistry-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chemistry Calculator">
+    <meta name="twitter:description" content="Solve chemistry problems with our Chemistry Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/chemistry-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Chemistry Calculator",
+        "description": "A tool for chemistry calculations including molarity, moles, mass percent, and ideal gas law.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "ScienceApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Chemistry Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Chemistry Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="chemForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Chemistry Calculation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="molarity">Molarity (M = mol/L)</option>
+                        <option value="moles">Moles (n = m/MW)</option>
+                        <option value="massPercent">Mass Percent (% = (m_solute/m_solution) × 100)</option>
+                        <option value="idealGasLaw">Ideal Gas Law (PV = nRT)</option>
+                    </select>
+                </div>
+                <div class="input-group" id="input1Group">
+                    <label for="input1" class="form-label">Input 1 (e.g., Moles, Mass)</label>
+                    <input type="number" class="form-control" id="input1" step="any" required>
+                </div>
+                <div class="input-group" id="input2Group" style="display: none;">
+                    <label for="input2" class="form-label">Input 2 (e.g., Volume, Molar Mass)</label>
+                    <input type="number" class="form-control" id="input2" step="any">
+                </div>
+                <div class="input-group" id="input3Group" style="display: none;">
+                    <label for="input3" class="form-label">Input 3 (e.g., Pressure, Temperature)</label>
+                    <input type="number" class="form-control" id="input3" step="any">
+                </div>
+                <div class="input-group" id="input4Group" style="display: none;">
+                    <label for="input4" class="form-label">Input 4 (e.g., Volume)</label>
+                    <input type="number" class="form-control" id="input4" step="any">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Chemistry Calculation Result</h4>
+                <p id="chemResult"></p>
+                <p id="chemSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Chemistry Calculator</h2>
+            <ol>
+                <li>Select a chemistry calculation (e.g., molarity, moles, mass percent, ideal gas law).</li>
+                <li>Enter the required inputs based on the calculation (e.g., moles, volume, mass).</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Chemistry Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle input fields based on operation
+        document.getElementById('operation').addEventListener('change', function() {
+            const operation = this.value;
+            const input2Group = document.getElementById('input2Group');
+            const input3Group = document.getElementById('input3Group');
+            const input4Group = document.getElementById('input4Group');
+            const input2 = document.getElementById('input2');
+            const input3 = document.getElementById('input3');
+            const input4 = document.getElementById('input4');
+
+            // Reset visibility and requirements
+            input2Group.style.display = 'none';
+            input3Group.style.display = 'none';
+            input4Group.style.display = 'none';
+            input2.required = false;
+            input3.required = false;
+            input4.required = false;
+
+            // Set input labels and visibility based on operation
+            if (operation === 'molarity') {
+                input2Group.style.display = 'block';
+                document.getElementById('input1').previousElementSibling.innerText = 'Moles of Solute (mol)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Volume of Solution (L)';
+                input2.required = true;
+            } else if (operation === 'moles') {
+                input2Group.style.display = 'block';
+                document.getElementById('input1').previousElementSibling.innerText = 'Mass of Substance (g)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Molar Mass (g/mol)';
+                input2.required = true;
+            } else if (operation === 'massPercent') {
+                input2Group.style.display = 'block';
+                document.getElementById('input1').previousElementSibling.innerText = 'Mass of Solute (g)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Mass of Solution (g)';
+                input2.required = true;
+            } else if (operation === 'idealGasLaw') {
+                input2Group.style.display = 'block';
+                input3Group.style.display = 'block';
+                input4Group.style.display = 'block';
+                document.getElementById('input1').previousElementSibling.innerText = 'Pressure (atm)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Volume (L)';
+                document.getElementById('input3').previousElementSibling.innerText = 'Temperature (K)';
+                document.getElementById('input4').previousElementSibling.innerText = 'Moles (mol)';
+                input2.required = true;
+                input3.required = true;
+                input4.required = true;
+            }
+        });
+
+        document.getElementById('chemForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const input1 = parseFloat(document.getElementById('input1').value);
+            const input2 = parseFloat(document.getElementById('input2').value);
+            const input3 = parseFloat(document.getElementById('input3').value);
+            const input4 = parseFloat(document.getElementById('input4').value);
+            let result, summary;
+
+            // Validate inputs
+            if (['molarity', 'moles', 'massPercent'].includes(operation) && (input1 <= 0 || input2 <= 0)) {
+                summary = `Error: Inputs must be positive.`;
+            } else if (operation === 'molarity' && input2 === 0) {
+                summary = `Error: Volume cannot be zero.`;
+            } else if (operation === 'moles' && input2 === 0) {
+                summary = `Error: Molar mass cannot be zero.`;
+            } else if (operation === 'massPercent' && input2 === 0) {
+                summary = `Error: Mass of solution cannot be zero.`;
+            } else if (operation === 'idealGasLaw' && (input1 <= 0 || input2 <= 0 || input3 <= 0 || input4 <= 0)) {
+                summary = `Error: Pressure, volume, temperature, and moles must be positive.`;
+            } else {
+                // Perform calculation
+                switch (operation) {
+                    case 'molarity':
+                        result = input1 / input2; // M = mol/L
+                        summary = `Molarity: ${input1} mol ÷ ${input2} L = ${result.toFixed(3)} M`;
+                        break;
+                    case 'moles':
+                        result = input1 / input2; // n = m/MW
+                        summary = `Moles: ${input1} g ÷ ${input2} g/mol = ${result.toFixed(3)} mol`;
+                        break;
+                    case 'massPercent':
+                        result = (input1 / input2) * 100; // % = (m_solute/m_solution) × 100
+                        summary = `Mass Percent: (${input1} g ÷ ${input2} g) × 100 = ${result.toFixed(2)}%`;
+                        break;
+                    case 'idealGasLaw':
+                        const R = 0.0821; // Gas constant in L·atm/(mol·K)
+                        result = input1 * input2; // PV = nRT, check if PV = nRT holds
+                        const rightSide = input4 * R * input3;
+                        summary = `Ideal Gas Law: ${input1} atm × ${input2} L = ${input4} mol × ${R} L·atm/(mol·K) × ${input3} K = ${result.toFixed(3)} (PV) vs ${rightSide.toFixed(3)} (nRT)`;
+                        break;
+                }
+            }
+
+            document.getElementById('chemResult').innerText = summary.includes('Error') ? '' : `Result: ${result.toFixed(3)}`;
+            document.getElementById('chemSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

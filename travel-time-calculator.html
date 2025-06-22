@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Time Calculator - Journey Time & Arrival</title>
+    <meta name="description" content="Calculate travel time with our free Travel Time Calculator. Find total travel time, estimated arrival time, or required speed for your journey.">
+    <meta name="keywords" content="travel time calculator, journey time, arrival time, required speed, trip planning">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Travel Time Calculator">
+    <meta property="og:description" content="Calculate total travel time, estimated arrival time, or required speed with our free Travel Time Calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/travel-time-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Travel Time Calculator">
+    <meta name="twitter:description" content="Plan your trip with our Travel Time Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/travel-time-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Travel Time Calculator",
+        "description": "A tool for calculating travel time, including total journey time, estimated arrival time, and required speed, with options for stops or delays.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Travel Time Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Travel Time Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="travelForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Travel Calculation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="travelTime">Total Travel Time</option>
+                        <option value="arrivalTime">Estimated Arrival Time</option>
+                        <option value="requiredSpeed">Required Speed</option>
+                    </select>
+                </div>
+                <div class="input-group" id="distanceGroup">
+                    <label for="distance" class="form-label">Distance (miles or km)</label>
+                    <input type="number" class="form-control" id="distance" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="speedGroup">
+                    <label for="speed" class="form-label">Average Speed (mph or km/h)</label>
+                    <input type="number" class="form-control" id="speed" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="departureGroup" style="display: none;">
+                    <label for="departure" class="form-label">Departure Time</label>
+                    <input type="datetime-local" class="form-control" id="departure" value="2025-06-21T18:57">
+                </div>
+                <div class="input-group" id="stopsGroup">
+                    <label for="stops" class="form-label">Stops/Delays (hours, optional)</label>
+                    <input type="number" class="form-control" id="stops" step="0.01" min="0" placeholder="0">
+                </div>
+                <div class="input-group" id="timeGroup" style="display: none;">
+                    <label for="travelTimeInput" class="form-label">Total Travel Time (hours)</label>
+                    <input type="number" class="form-control" id="travelTimeInput" step="0.01" min="0">
+                </div>
+                <div class="input-group" id="unitGroup">
+                    <label for="unit" class="form-label">Unit</label>
+                    <select class="form-control" id="unit" required>
+                        <option value="miles">Miles (mph)</option>
+                        <option value="km">Kilometers (km/h)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Travel Calculation Result</h4>
+                <p id="travelResult"></p>
+                <p id="travelSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Travel Time Calculator</h2>
+            <ol>
+                <li>Select a travel calculation (e.g., total travel time, arrival time, required speed).</li>
+                <li>Enter the required inputs (e.g., distance, speed, departure time, stops, unit).</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Travel Time Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle input fields based on operation
+        document.getElementById('operation').addEventListener('change', function() {
+            const operation = this.value;
+            const departureGroup = document.getElementById('departureGroup');
+            const speedGroup = document.getElementById('speedGroup');
+            const timeGroup = document.getElementById('timeGroup');
+            const departure = document.getElementById('departure');
+            const speed = document.getElementById('speed');
+            const travelTimeInput = document.getElementById('travelTimeInput');
+
+            // Reset visibility and requirements
+            departureGroup.style.display = 'none';
+            timeGroup.style.display = 'none';
+            speedGroup.style.display = 'block';
+            departure.required = false;
+            travelTimeInput.required = false;
+            speed.required = true;
+
+            // Set input visibility based on operation
+            if (operation === 'arrivalTime') {
+                departureGroup.style.display = 'block';
+                departure.required = true;
+            } else if (operation === 'requiredSpeed') {
+                timeGroup.style.display = 'block';
+                speedGroup.style.display = 'none';
+                travelTimeInput.required = true;
+                speed.required = false;
+            }
+        });
+
+        document.getElementById('travelForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const distance = parseFloat(document.getElementById('distance').value);
+            const speed = parseFloat(document.getElementById('speed').value);
+            const departure = document.getElementById('departure').value;
+            const stops = parseFloat(document.getElementById('stops').value) || 0;
+            const travelTimeInput = parseFloat(document.getElementById('travelTimeInput').value);
+            const unit = document.getElementById('unit').value;
+            let result, summary;
+
+            // Validate inputs
+            if (isNaN(distance) || distance <= 0) {
+                summary = `Error: Distance must be a positive number.`;
+            } else if ((operation !== 'requiredSpeed') && (isNaN(speed) || speed <= 0)) {
+                summary = `Error: Speed must be a positive number.`;
+            } else if (operation === 'arrivalTime' && !departure) {
+                summary = `Error: Departure time is required.`;
+            } else if (operation === 'requiredSpeed' && (isNaN(travelTimeInput) || travelTimeInput <= 0)) {
+                summary = `Error: Travel time must be a positive number.`;
+            } else if (stops < 0) {
+                summary = `Error: Stops/delays cannot be negative.`;
+            } else {
+                // Perform calculation
+                let travelTimeHours;
+
+                switch (operation) {
+                    case 'travelTime':
+                        travelTimeHours = (distance / speed) + stops;
+                        const hours = Math.floor(travelTimeHours);
+                        const minutes = Math.round((travelTimeHours - hours) * 60);
+                        result = `${hours} hours ${minutes} minutes`;
+                        summary = `Travel Time: ${distance} ${unit} at ${speed} ${unit === 'miles' ? 'mph' : 'km/h'}`;
+                        if (stops > 0) summary += ` + ${stops} hours stops`;
+                        summary += ` = ${result}`;
+                        break;
+                    case 'arrivalTime':
+                        travelTimeHours = (distance / speed) + stops;
+                        const departureDate = new Date(departure);
+                        const arrivalTime = new Date(departureDate.getTime() + travelTimeHours * 60 * 60 * 1000);
+                        result = arrivalTime.toLocaleString();
+                        summary = `Arrival Time: Depart at ${departureDate.toLocaleString()} for ${distance} ${unit} at ${speed} ${unit === 'miles' ? 'mph' : 'km/h'}`;
+                        if (stops > 0) summary += ` + ${stops} hours stops`;
+                        summary += ` = ${result}`;
+                        break;
+                    case 'requiredSpeed':
+                        travelTimeHours = travelTimeInput - stops;
+                        if (travelTimeHours <= 0) {
+                            summary = `Error: Travel time must be greater than stops/delays.`;
+                        } else {
+                            const requiredSpeed = distance / travelTimeHours;
+                            result = requiredSpeed.toFixed(2);
+                            summary = `Required Speed: ${distance} ${unit} in ${travelTimeInput} hours`;
+                            if (stops > 0) summary += ` (including ${stops} hours stops)`;
+                            summary += ` = ${result} ${unit === 'miles' ? 'mph' : 'km/h'}`;
+                        }
+                        break;
+                }
+            }
+
+            document.getElementById('travelResult').innerText = summary.includes('Error') ? '' : `Result: ${result}`;
+            document.getElementById('travelSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

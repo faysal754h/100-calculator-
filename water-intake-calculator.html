@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Intake Calculator - Daily Hydration Needs</title>
+    <meta name="description" content="Calculate your daily water intake with our free Water Intake Calculator. Enter your weight, activity level, and climate to get personalized hydration recommendations.">
+    <meta name="keywords" content="water intake calculator, hydration calculator, daily water needs, health calculator">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Water Intake Calculator">
+    <meta property="og:description" content="Stay hydrated with our easy-to-use Water Intake Calculator. Get personalized daily water intake recommendations!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/water-intake-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Water Intake Calculator">
+    <meta name="twitter:description" content="Stay hydrated with our easy-to-use Water Intake Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/water-intake-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Water Intake Calculator",
+        "description": "A tool to calculate daily water intake based on weight, activity level, and climate.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "HealthApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Water Intake Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Water Intake Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="waterIntakeForm">
+                <div class="mb-3">
+                    <label for="weight" class="form-label">Weight (kg)</label>
+                    <input type="number" class="form-control" id="weight" min="1" step="0.1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="activityLevel" class="form-label">Activity Level</label>
+                    <select class="form-control" id="activityLevel" required>
+                        <option value="sedentary">Sedentary (little or no exercise)</option>
+                        <option value="moderate">Moderate (exercise 3-5 days/week)</option>
+                        <option value="active">Active (daily exercise or intense workouts)</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="climate" class="form-label">Climate</label>
+                    <select class="form-control" id="climate" required>
+                        <option value="normal">Normal (temperate)</option>
+                        <option value="hot">Hot (high temperatures)</option>
+                        <option value="humid">Humid (high humidity)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate Water Intake</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Your Daily Water Intake</h4>
+                <p id="waterIntake"></p>
+                <p id="intakeSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Water Intake Calculator</h2>
+            <ol>
+                <li>Enter your weight in kilograms.</li>
+                <li>Select your activity level (sedentary, moderate, or active).</li>
+                <li>Select your climate (normal, hot, or humid).</li>
+                <li>Click the "Calculate Water Intake" button to see your recommended daily water intake.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Water Intake Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        document.getElementById('waterIntakeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const weight = parseFloat(document.getElementById('weight').value);
+            const activityLevel = document.getElementById('activityLevel').value;
+            const climate = document.getElementById('climate').value;
+
+            // Base water intake: 30-35 ml per kg of body weight
+            let baseIntake = weight * 0.033; // 33 ml/kg as average
+            let activityMultiplier = 1;
+            let climateMultiplier = 1;
+
+            // Adjust for activity level
+            if (activityLevel === 'moderate') {
+                activityMultiplier = 1.2; // 20% more for moderate activity
+            } else if (activityLevel === 'active') {
+                activityMultiplier = 1.4; // 40% more for active lifestyle
+            }
+
+            // Adjust for climate
+            if (climate === 'hot' || climate === 'humid') {
+                climateMultiplier = 1.3; // 30% more for hot or humid climates
+            }
+
+            const totalWaterIntake = baseIntake * activityMultiplier * climateMultiplier; // in liters
+            const totalWaterIntakeOz = totalWaterIntake * 33.814; // Convert to ounces (1 liter = 33.814 oz)
+
+            let summary = `To stay hydrated, aim to drink approximately ${totalWaterIntake.toFixed(1)} liters (${totalWaterIntakeOz.toFixed(1)} oz) of water per day. Adjust based on additional factors like pregnancy, breastfeeding, or medical conditions.`;
+
+            document.getElementById('waterIntake').innerText = `Recommended Daily Water Intake: ${totalWaterIntake.toFixed(1)} liters (${totalWaterIntakeOz.toFixed(1)} oz)`;
+            document.getElementById('intakeSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angle Calculator - Degrees, Radians, Complementary & More</title>
+    <meta name="description" content="Perform angle calculations with our free Angle Calculator. Convert degrees to radians, find complementary and supplementary angles, and calculate triangle angles.">
+    <meta name="keywords" content="angle calculator, degrees to radians, complementary angle, supplementary angle, triangle angle calculator">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Angle Calculator">
+    <meta property="og:description" content="Solve angle problems with our Angle Calculator. Supports degree-radian conversion, complementary/supplementary angles, and triangle angle calculations!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/angle-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Angle Calculator">
+    <meta name="twitter:description" content="Solve angle problems with our Angle Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/angle-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Angle Calculator",
+        "description": "A tool for angle calculations including degree-radian conversion, complementary/supplementary angles, and triangle angles.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "MathApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Angle Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Angle Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="angleForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Angle Calculation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="degToRad">Degrees to Radians (rad = deg × π/180)</option>
+                        <option value="radToDeg">Radians to Degrees (deg = rad × 180/π)</option>
+                        <option value="complementary">Complementary Angle (90° - θ)</option>
+                        <option value="supplementary">Supplementary Angle (180° - θ)</option>
+                        <option value="triangleAngle">Triangle Angle (using Law of Cosines)</option>
+                    </select>
+                </div>
+                <div class="input-group" id="input1Group">
+                    <label for="input1" class="form-label">Input 1 (e.g., Angle, Side a)</label>
+                    <input type="number" class="form-control" id="input1" step="any" required>
+                </div>
+                <div class="input-group" id="input2Group" style="display: none;">
+                    <label for="input2" class="form-label">Input 2 (e.g., Side b)</label>
+                    <input type="number" class="form-control" id="input2" step="any">
+                </div>
+                <div class="input-group" id="input3Group" style="display: none;">
+                    <label for="input3" class="form-label">Input 3 (e.g., Side c)</label>
+                    <input type="number" class="form-control" id="input3" step="any">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Angle Calculation Result</h4>
+                <p id="angleResult"></p>
+                <p id="angleSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Angle Calculator</h2>
+            <ol>
+                <li>Select an angle calculation (e.g., degrees to radians, triangle angle).</li>
+                <li>Enter the required inputs based on the calculation (e.g., angle, side lengths).</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Angle Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle input fields based on operation
+        document.getElementById('operation').addEventListener('change', function() {
+            const operation = this.value;
+            const input2Group = document.getElementById('input2Group');
+            const input3Group = document.getElementById('input3Group');
+            const input2 = document.getElementById('input2');
+            const input3 = document.getElementById('input3');
+
+            // Reset visibility and requirements
+            input2Group.style.display = 'none';
+            input3Group.style.display = 'none';
+            input2.required = false;
+            input3.required = false;
+
+            // Set input labels and visibility based on operation
+            if (operation === 'degToRad' || operation === 'radToDeg' || operation === 'complementary' || operation === 'supplementary') {
+                document.getElementById('input1').previousElementSibling.innerText = 'Angle (θ)';
+            } else if (operation === 'triangleAngle') {
+                input2Group.style.display = 'block';
+                input3Group.style.display = 'block';
+                document.getElementById('input1').previousElementSibling.innerText = 'Side a (opposite angle A)';
+                document.getElementById('input2').previousElementSibling.innerText = 'Side b';
+                document.getElementById('input3').previousElementSibling.innerText = 'Side c';
+                input2.required = true;
+                input3.required = true;
+            }
+        });
+
+        document.getElementById('angleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const input1 = parseFloat(document.getElementById('input1').value);
+            const input2 = parseFloat(document.getElementById('input2').value);
+            const input3 = parseFloat(document.getElementById('input3').value);
+            let result, summary;
+
+            // Validate inputs
+            if (operation !== 'triangleAngle' && input1 < 0) {
+                summary = `Error: Angle must be non-negative.`;
+            } else if (operation === 'triangleAngle' && (input1 <= 0 || input2 <= 0 || input3 <= 0)) {
+                summary = `Error: Side lengths must be positive.`;
+            } else if (operation === 'triangleAngle' && (input1 + input2 <= input3 || input2 + input3 <= input1 || input1 + input3 <= input2)) {
+                summary = `Error: Side lengths do not form a valid triangle (triangle inequality theorem).`;
+            } else if (operation === 'complementary' && input1 >= 90) {
+                summary = `Error: Angle must be less than 90° for a complementary angle.`;
+            } else if (operation === 'supplementary' && input1 >= 180) {
+                summary = `Error: Angle must be less than 180° for a supplementary angle.`;
+            } else {
+                // Perform calculation
+                switch (operation) {
+                    case 'degToRad':
+                        result = input1 * (Math.PI / 180); // rad = deg × π/180
+                        summary = `Radians: ${input1} × π/180 = ${result.toFixed(3)} rad`;
+                        break;
+                    case 'radToDeg':
+                        result = input1 * (180 / Math.PI); // deg = rad × 180/π
+                        summary = `Degrees: ${input1} × 180/π = ${result.toFixed(2)}°`;
+                        break;
+                    case 'complementary':
+                        result = 90 - input1; // 90° - θ
+                        summary = `Complementary Angle: 90° - ${input1}° = ${result.toFixed(2)}°`;
+                        break;
+                    case 'supplementary':
+                        result = 180 - input1; // 180° - θ
+                        summary = `Supplementary Angle: 180° - ${input1}° = ${result.toFixed(2)}°`;
+                        break;
+                    case 'triangleAngle':
+                        // Law of Cosines: cos(A) = (b² + c² - a²)/(2bc)
+                        const cosA = (input2 * input2 + input3 * input3 - input1 * input1) / (2 * input2 * input3);
+                        result = Math.acos(cosA) * (180 / Math.PI); // Convert radians to degrees
+                        summary = `Angle A: cos⁻¹((${input2}² + ${input3}² - ${input1}²)/(2 × ${input2} × ${input3})) = ${result.toFixed(2)}°`;
+                        break;
+                }
+            }
+
+            document.getElementById('angleResult').innerText = summary.includes('Error') ? '' : `Result: ${result.toFixed(3)}`;
+            document.getElementById('angleSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

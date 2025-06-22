@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Calculator - Days, Weeks & Months</title>
+    <meta name="description" content="Perform date calculations with our free Date Calculator. Find days, weeks, or months between dates, add/subtract time, or determine the day of the week.">
+    <meta name="keywords" content="date calculator, days between dates, add days, subtract weeks, day of week">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Date Calculator">
+    <meta property="og:description" content="Calculate days, weeks, or months between dates, add/subtract time, or find the day of the week with our free Date Calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/date-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Date Calculator">
+    <meta name="twitter:description" content="Calculate dates easily with our Date Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/date-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Date Calculator",
+        "description": "A tool for date calculations including days, weeks, or months between dates, adding/subtracting time, and determining the day of the week.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Date Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Date Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="dateForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Date Calculation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="durationBetween">Duration Between Dates</option>
+                        <option value="addTime">Add Time to Date</option>
+                        <option value="subtractTime">Subtract Time from Date</option>
+                        <option value="dayOfWeek">Day of the Week</option>
+                    </select>
+                </div>
+                <div class="input-group" id="date1Group">
+                    <label for="date1" class="form-label">Date 1 (YYYY-MM-DD)</label>
+                    <input type="date" class="form-control" id="date1" required>
+                </div>
+                <div class="input-group" id="date2Group" style="display: none;">
+                    <label for="date2" class="form-label">Date 2 (YYYY-MM-DD)</label>
+                    <input type="date" class="form-control" id="date2">
+                </div>
+                <div class="input-group" id="timeUnitGroup" style="display: none;">
+                    <label for="timeUnit" class="form-label">Time Unit</label>
+                    <select class="form-control" id="timeUnit">
+                        <option value="days">Days</option>
+                        <option value="weeks">Weeks</option>
+                        <option value="months">Months</option>
+                    </select>
+                </div>
+                <div class="input-group" id="amountGroup" style="display: none;">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="number" class="form-control" id="amount" step="1" min="0">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Date Calculation Result</h4>
+                <p id="dateResult"></p>
+                <p id="dateSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Date Calculator</h2>
+            <ol>
+                <li>Select a date calculation (e.g., duration between dates, add time).</li>
+                <li>Enter the required inputs (e.g., dates, time unit, amount).</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Date Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle input fields based on operation
+        document.getElementById('operation').addEventListener('change', function() {
+            const operation = this.value;
+            const date2Group = document.getElementById('date2Group');
+            const timeUnitGroup = document.getElementById('timeUnitGroup');
+            const amountGroup = document.getElementById('amountGroup');
+            const date2 = document.getElementById('date2');
+            const amount = document.getElementById('amount');
+
+            // Reset visibility and requirements
+            date2Group.style.display = 'none';
+            timeUnitGroup.style.display = 'none';
+            amountGroup.style.display = 'none';
+            date2.required = false;
+            amount.required = false;
+
+            // Set input visibility based on operation
+            if (operation === 'durationBetween') {
+                date2Group.style.display = 'block';
+                timeUnitGroup.style.display = 'block';
+                date2.required = true;
+            } else if (operation === 'addTime' || operation === 'subtractTime') {
+                timeUnitGroup.style.display = 'block';
+                amountGroup.style.display = 'block';
+                amount.required = true;
+            }
+        });
+
+        document.getElementById('dateForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const date1 = new Date(document.getElementById('date1').value);
+            const date2 = new Date(document.getElementById('date2').value);
+            const timeUnit = document.getElementById('timeUnit').value;
+            const amount = parseInt(document.getElementById('amount').value) || 0;
+            let result, summary;
+
+            // Validate inputs
+            if (isNaN(date1.getTime())) {
+                summary = `Error: Invalid Date 1.`;
+            } else if (operation === 'durationBetween' && isNaN(date2.getTime())) {
+                summary = `Error: Invalid Date 2.`;
+            } else if ((operation === 'addTime' || operation === 'subtractTime') && amount < 0) {
+                summary = `Error: Amount must be non-negative.`;
+            } else {
+                // Perform calculation
+                switch (operation) {
+                    case 'durationBetween':
+                        const diffTime = Math.abs(date2 - date1);
+                        if (timeUnit === 'days') {
+                            result = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            summary = `Days Between: ${date1.toISOString().split('T')[0]} and ${date2.toISOString().split('T')[0]} = ${result} days`;
+                        } else if (timeUnit === 'weeks') {
+                            result = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 7));
+                            summary = `Weeks Between: ${date1.toISOString().split('T')[0]} and ${date2.toISOString().split('T')[0]} = ${result} weeks`;
+                        } else if (timeUnit === 'months') {
+                            const months = (date2.getFullYear() - date1.getFullYear()) * 12 + (date2.getMonth() - date1.getMonth());
+                            result = Math.abs(months);
+                            summary = `Months Between: ${date1.toISOString().split('T')[0]} and ${date2.toISOString().split('T')[0]} = ${result} months`;
+                        }
+                        break;
+                    case 'addTime':
+                        const newDateAdd = new Date(date1);
+                        if (timeUnit === 'days') {
+                            newDateAdd.setDate(date1.getDate() + amount);
+                            result = newDateAdd.toISOString().split('T')[0];
+                            summary = `Add: ${date1.toISOString().split('T')[0]} + ${amount} days = ${result}`;
+                        } else if (timeUnit === 'weeks') {
+                            newDateAdd.setDate(date1.getDate() + amount * 7);
+                            result = newDateAdd.toISOString().split('T')[0];
+                            summary = `Add: ${date1.toISOString().split('T')[0]} + ${amount} weeks = ${result}`;
+                        } else if (timeUnit === 'months') {
+                            newDateAdd.setMonth(date1.getMonth() + amount);
+                            result = newDateAdd.toISOString().split('T')[0];
+                            summary = `Add: ${date1.toISOString().split('T')[0]} + ${amount} months = ${result}`;
+                        }
+                        break;
+                    case 'subtractTime':
+                        const newDateSub = new Date(date1);
+                        if (timeUnit === 'days') {
+                            newDateSub.setDate(date1.getDate() - amount);
+                            result = newDateSub.toISOString().split('T')[0];
+                            summary = `Subtract: ${date1.toISOString().split('T')[0]} - ${amount} days = ${result}`;
+                        } else if (timeUnit === 'weeks') {
+                            newDateSub.setDate(date1.getDate() - amount * 7);
+                            result = newDateSub.toISOString().split('T')[0];
+                            summary = `Subtract: ${date1.toISOString().split('T')[0]} - ${amount} weeks = ${result}`;
+                        } else if (timeUnit === 'months') {
+                            newDateSub.setMonth(date1.getMonth() - amount);
+                            result = newDateSub.toISOString().split('T')[0];
+                            summary = `Subtract: ${date1.toISOString().split('T')[0]} - ${amount} months = ${result}`;
+                        }
+                        break;
+                    case 'dayOfWeek':
+                        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                        result = daysOfWeek[date1.getDay()];
+                        summary = `Day of the Week: ${date1.toISOString().split('T')[0]} is a ${result}`;
+                        break;
+                }
+            }
+
+            document.getElementById('dateResult').innerText = summary.includes('Error') ? '' : `Result: ${result}`;
+            document.getElementById('dateSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

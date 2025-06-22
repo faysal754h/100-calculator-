@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Cost Calculator - Estimate Parking Fees</title>
+    <meta name="description" content="Calculate parking costs with our free Parking Cost Calculator. Estimate fees based on duration, parking type, and additional services.">
+    <meta name="keywords" content="parking cost calculator, parking fees, hourly parking, daily parking, parking rates">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Parking Cost Calculator">
+    <meta property="og:description" content="Estimate parking costs for hourly, daily, weekly, or monthly parking with our free Parking Cost Calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/parking-cost-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Parking Cost Calculator">
+    <meta name="twitter:description" content="Plan your parking budget with our Parking Cost Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/parking-cost-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Parking Cost Calculator",
+        "description": "A tool for calculating parking costs based on duration, parking type (hourly, daily, weekly, monthly), and additional services like valet or covered parking.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Parking Cost Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Parking Cost Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="parkingForm">
+                <div class="mb-3">
+                    <label for="inputMethod" class="form-label">Input Method</label>
+                    <select class="form-control" id="inputMethod" required>
+                        <option value="datetime">Start/End Time</option>
+                        <option value="duration">Duration (Hours/Minutes)</option>
+                    </select>
+                </div>
+                <!-- DateTime Inputs -->
+                <div id="datetimeInputs">
+                    <div class="input-group">
+                        <label for="startTime" class="form-label">Start Time</label>
+                        <input type="datetime-local" class="form-control" id="startTime" value="2025-06-21T19:07" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="endTime" class="form-label">End Time</label>
+                        <input type="datetime-local" class="form-control" id="endTime" required>
+                    </div>
+                </div>
+                <!-- Duration Inputs -->
+                <div id="durationInputs" style="display: none;">
+                    <div class="input-group">
+                        <label for="hours" class="form-label">Hours</label>
+                        <input type="number" class="form-control" id="hours" step="1" min="0" placeholder="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="minutes" class="form-label">Minutes</label>
+                        <input type="number" class="form-control" id="minutes" step="1" min="0" max="59" placeholder="0" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="parkingType" class="form-label">Parking Type</label>
+                    <select class="form-control" id="parkingType" required>
+                        <option value="hourly">Hourly</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <div class="input-group" id="hourlyRateGroup">
+                    <label for="hourlyRate" class="form-label">Hourly Rate ($)</label>
+                    <input type="number" class="form-control" id="hourlyRate" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="dailyRateGroup" style="display: none;">
+                    <label for="dailyRate" class="form-label">Daily Rate ($)</label>
+                    <input type="number" class="form-control" id="dailyRate" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="weeklyRateGroup" style="display: none;">
+                    <label for="weeklyRate" class="form-label">Weekly Rate ($)</label>
+                    <input type="number" class="form-control" id="weeklyRate" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="monthlyRateGroup" style="display: none;">
+                    <label for="monthlyRate" class="form-label">Monthly Rate ($)</label>
+                    <input type="number" class="form-control" id="monthlyRate" step="0.01" min="0" required>
+                </div>
+                <div class="input-group">
+                    <label for="discount" class="form-label">Discount Percentage (%) (Optional)</label>
+                    <input type="number" class="form-control" id="discount" step="0.01" min="0" max="100" placeholder="0">
+                </div>
+                <div class="input-group">
+                    <label for="additionalFees" class="form-label">Additional Fees (e.g., Valet, Covered Parking) ($)</label>
+                    <input type="number" class="form-control" id="additionalFees" step="0.01" min="0" placeholder="0">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Parking Cost Calculation Result</h4>
+                <p id="parkingResult"></p>
+                <p id="parkingSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Parking Cost Calculator</h2>
+            <ol>
+                <li>Select the input method (start/end time or duration).</li>
+                <li>Enter the parking duration or start/end times.</li>
+                <li>Choose the parking type (hourly, daily, weekly, monthly) and enter the corresponding rate.</li>
+                <li>Add optional discount percentage and additional fees (e.g., valet).</li>
+                <li>Click "Calculate" to see the total parking cost.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Parking Cost Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle inputs based on input method and parking type
+        function toggleInputs() {
+            const inputMethod = document.getElementById('inputMethod').value;
+            const parkingType = document.getElementById('parkingType').value;
+
+            // Toggle input method
+            document.getElementById('datetimeInputs').style.display = inputMethod === 'datetime' ? 'block' : 'none';
+            document.getElementById('durationInputs').style.display = inputMethod === 'duration' ? 'block' : 'none';
+            document.getElementById('startTime').required = inputMethod === 'datetime';
+            document.getElementById('endTime').required = inputMethod === 'datetime';
+            document.getElementById('hours').required = inputMethod === 'duration';
+            document.getElementById('minutes').required = inputMethod === 'duration';
+
+            // Toggle rate inputs
+            document.getElementById('hourlyRateGroup').style.display = parkingType === 'hourly' ? 'block' : 'none';
+            document.getElementById('dailyRateGroup').style.display = parkingType === 'daily' ? 'block' : 'none';
+            document.getElementById('weeklyRateGroup').style.display = parkingType === 'weekly' ? 'block' : 'none';
+            document.getElementById('monthlyRateGroup').style.display = parkingType === 'monthly' ? 'block' : 'none';
+            document.getElementById('hourlyRate').required = parkingType === 'hourly';
+            document.getElementById('dailyRate').required = parkingType === 'daily';
+            document.getElementById('weeklyRate').required = parkingType === 'weekly';
+            document.getElementById('monthlyRate').required = parkingType === 'monthly';
+        }
+
+        document.getElementById('inputMethod').addEventListener('change', toggleInputs);
+        document.getElementById('parkingType').addEventListener('change', toggleInputs);
+
+        document.getElementById('parkingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const inputMethod = document.getElementById('inputMethod').value;
+            const parkingType = document.getElementById('parkingType').value;
+            const hourlyRate = parseFloat(document.getElementById('hourlyRate').value);
+            const dailyRate = parseFloat(document.getElementById('dailyRate').value);
+            const weeklyRate = parseFloat(document.getElementById('weeklyRate').value);
+            const monthlyRate = parseFloat(document.getElementById('monthlyRate').value);
+            const discount = parseFloat(document.getElementById('discount').value) || 0;
+            const additionalFees = parseFloat(document.getElementById('additionalFees').value) || 0;
+            let durationHours, summary;
+
+            // Validate inputs
+            if (inputMethod === 'datetime') {
+                const startTime = new Date(document.getElementById('startTime').value);
+                const endTime = new Date(document.getElementById('endTime').value);
+                if (isNaN(startTime) || isNaN(endTime)) {
+                    summary = `Error: Invalid start or end time.`;
+                } else if (endTime <= startTime) {
+                    summary = `Error: End time must be after start time.`;
+                } else {
+                    durationHours = (endTime - startTime) / (1000 * 60 * 60); // Convert ms to hours
+                }
+            } else {
+                const hours = parseInt(document.getElementById('hours').value) || 0;
+                const minutes = parseInt(document.getElementById('minutes').value) || 0;
+                if (hours < 0 || minutes < 0) {
+                    summary = `Error: Hours and minutes cannot be negative.`;
+                } else if (hours === 0 && minutes === 0) {
+                    summary = `Error: Duration must be greater than zero.`;
+                } else {
+                    durationHours = hours + (minutes / 60);
+                }
+            }
+
+            if (discount < 0 || discount > 100) {
+                summary = `Error: Discount percentage must be between 0 and 100.`;
+            } else if (additionalFees < 0) {
+                summary = `Error: Additional fees cannot be negative.`;
+            } else if ((parkingType === 'hourly' && (isNaN(hourlyRate) || hourlyRate <= 0)) ||
+                       (parkingType === 'daily' && (isNaN(dailyRate) || dailyRate <= 0)) ||
+                       (parkingType === 'weekly' && (isNaN(weeklyRate) || weeklyRate <= 0)) ||
+                       (parkingType === 'monthly' && (isNaN(monthlyRate) || monthlyRate <= 0))) {
+                summary = `Error: Rate must be a positive number.`;
+            } else if (!summary) {
+                // Perform calculation
+                let baseCost;
+                switch (parkingType) {
+                    case 'hourly':
+                        baseCost = Math.ceil(durationHours) * hourlyRate; // Round up to next hour
+                        summary = `Hourly Parking: ${durationHours.toFixed(2)} hours (rounded to ${Math.ceil(durationHours)} hours) × $${hourlyRate.toFixed(2)}/hour`;
+                        break;
+                    case 'daily':
+                        baseCost = Math.ceil(durationHours / 24) * dailyRate; // Round up to next day
+                        summary = `Daily Parking: ${durationHours.toFixed(2)} hours (${Math.ceil(durationHours / 24)} days) × $${dailyRate.toFixed(2)}/day`;
+                        break;
+                    case 'weekly':
+                        baseCost = Math.ceil(durationHours / (24 * 7)) * weeklyRate; // Round up to next week
+                        summary = `Weekly Parking: ${durationHours.toFixed(2)} hours (${Math.ceil(durationHours / (24 * 7))} weeks) × $${weeklyRate.toFixed(2)}/week`;
+                        break;
+                    case 'monthly':
+                        baseCost = Math.ceil(durationHours / (24 * 30)) * monthlyRate; // Round up to next month (30 days)
+                        summary = `Monthly Parking: ${durationHours.toFixed(2)} hours (${Math.ceil(durationHours / (24 * 30))} months) × $${monthlyRate.toFixed(2)}/month`;
+                        break;
+                }
+
+                const discountAmount = baseCost * (discount / 100);
+                const discountedCost = baseCost - discountAmount;
+                const totalCost = discountedCost + additionalFees;
+
+                if (discount > 0) {
+                    summary += `<br>Discount (${discount}%): -$${discountAmount.toFixed(2)}`;
+                }
+                if (additionalFees > 0) {
+                    summary += `<br>Additional Fees: +$${additionalFees.toFixed(2)}`;
+                }
+                summary += `<br><strong>Total Cost: $${totalCost.toFixed(2)}</strong>`;
+            }
+
+            document.getElementById('parkingResult').innerText = summary.includes('Error') ? '' : `Total Cost: $${(summary.match(/Total Cost: \$(\d+\.\d{2})/) || [, ''])[1] || '0.00'}`;
+            document.getElementById('parkingSummary').innerHTML = summary || 'Error: Please check your inputs.';
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+
+        // Initialize input visibility
+        toggleInputs();
+    </script>
+</body>
+</html>

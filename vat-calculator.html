@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAT Calculator - Net, Gross & VAT Amount</title>
+    <meta name="description" content="Calculate VAT with our free VAT Calculator. Find VAT amount, net price, or gross price with inclusive or exclusive VAT calculations.">
+    <meta name="keywords" content="VAT calculator, value added tax, net price, gross price, VAT amount">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="VAT Calculator">
+    <meta property="og:description" content="Calculate VAT amount, net price, or gross price with our free VAT Calculator, including inclusive or exclusive VAT options.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/vat-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VAT Calculator">
+    <meta name="twitter:description" content="Calculate VAT easily with our VAT Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/vat-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "VAT Calculator",
+        "description": "A tool for calculating VAT, including VAT amount, net price, and gross price, with inclusive or exclusive VAT options.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">VAT Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">VAT Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="vatForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">VAT Calculation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="vatAmount">VAT Amount</option>
+                        <option value="netPrice">Net Price (Excluding VAT)</option>
+                        <option value="grossPrice">Gross Price (Including VAT)</option>
+                    </select>
+                </div>
+                <div class="input-group" id="priceGroup">
+                    <label for="price" class="form-label">Price ($)</label>
+                    <input type="number" class="form-control" id="price" step="0.01" min="0" required>
+                </div>
+                <div class="input-group" id="vatRateGroup">
+                    <label for="vatRate" class="form-label">VAT Rate (%)</label>
+                    <input type="number" class="form-control" id="vatRate" step="0.01" min="0" max="100" required>
+                </div>
+                <div class="input-group" id="priceTypeGroup">
+                    <label for="priceType" class="form-label">Price Type</label>
+                    <select class="form-control" id="priceType" required>
+                        <option value="net">Net (Excluding VAT)</option>
+                        <option value="gross">Gross (Including VAT)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>VAT Calculation Result</h4>
+                <p id="vatResult"></p>
+                <p id="vatSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the VAT Calculator</h2>
+            <ol>
+                <li>Select a VAT calculation (e.g., VAT amount, net price, gross price).</li>
+                <li>Enter the price, VAT rate, and select whether the price is net (excluding VAT) or gross (including VAT).</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 VAT Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        document.getElementById('vatForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            const price = parseFloat(document.getElementById('price').value);
+            const vatRate = parseFloat(document.getElementById('vatRate').value);
+            const priceType = document.getElementById('priceType').value;
+            let result, summary;
+
+            // Validate inputs
+            if (isNaN(price) || price <= 0) {
+                summary = `Error: Price must be a positive number.`;
+            } else if (isNaN(vatRate) || vatRate < 0 || vatRate > 100) {
+                summary = `Error: VAT rate must be between 0 and 100.`;
+            } else {
+                let netPrice, vatAmount, grossPrice;
+
+                // Calculate based on price type (net or gross)
+                if (priceType === 'net') {
+                    netPrice = price;
+                    vatAmount = netPrice * (vatRate / 100);
+                    grossPrice = netPrice + vatAmount;
+                } else {
+                    grossPrice = price;
+                    netPrice = grossPrice / (1 + vatRate / 100);
+                    vatAmount = grossPrice - netPrice;
+                }
+
+                // Perform requested calculation
+                switch (operation) {
+                    case 'vatAmount':
+                        result = vatAmount.toFixed(2);
+                        summary = `VAT Amount: $${priceType === 'net' ? netPrice.toFixed(2) : grossPrice.toFixed(2)} (${priceType}) × ${vatRate}% = $${result}`;
+                        break;
+                    case 'netPrice':
+                        result = netPrice.toFixed(2);
+                        summary = `Net Price (Excluding VAT): $${priceType === 'net' ? netPrice.toFixed(2) : grossPrice.toFixed(2)} (${priceType}) = $${result}`;
+                        break;
+                    case 'grossPrice':
+                        result = grossPrice.toFixed(2);
+                        summary = `Gross Price (Including VAT): $${priceType === 'net' ? netPrice.toFixed(2) : grossPrice.toFixed(2)} (${priceType}) + ${vatRate}% VAT = $${result}`;
+                        break;
+                }
+            }
+
+            document.getElementById('vatResult').innerText = summary.includes('Error') ? '' : `Result: $${result}`;
+            document.getElementById('vatSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

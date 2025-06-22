@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Calculator - Calculate Mean Easily</title>
+    <meta name="description" content="Calculate the average of numbers quickly with our free, responsive Average Calculator. Perfect for students, professionals, and daily use.">
+    <meta name="keywords" content="average calculator, mean calculator, online calculator, math tool, free calculator">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Average Calculator - Easy Mean Calculation">
+    <meta property="og:description" content="Use our free Average Calculator to find the mean of numbers instantly. Mobile-friendly and easy to use.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/average-calculator">
+    <meta property="og:image" content="https://yourwebsite.com/images/calculator-og-image.jpg">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Average Calculator - Easy Mean Calculation">
+    <meta name="twitter:description" content="Use our free Average Calculator to find the mean of numbers instantly. Mobile-friendly and easy to use.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/calculator-og-image.jpg">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+        }
+        .navbar, .footer {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link, .footer a {
+            color: white !important;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .result-box {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .ad-gate {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: white;
+            font-size: 1.5rem;
+        }
+    </style>
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Average Calculator",
+        "description": "A free online tool to calculate the average of numbers easily.",
+        "url": "https://yourwebsite.com/average-calculator",
+        "applicationCategory": "Calculator",
+        "operatingSystem": "All"
+    }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Average Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Back to Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/financial">Financial</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/health">Health</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/scientific">Scientific</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/daily-life">Daily Life</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 calculator-box">
+                <h2 class="text-center mb-4">Average Calculator</h2>
+                <form id="averageForm">
+                    <div class="mb-3">
+                        <label for="numbers" class="form-label">Enter numbers (comma-separated):</label>
+                        <input type="text" class="form-control" id="numbers" placeholder="e.g., 10, 20, 30" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Calculate Average</button>
+                </form>
+                <div id="result" class="result-box d-none">
+                    <h4>Result</h4>
+                    <p id="averageResult"></p>
+                </div>
+                <div id="adGate" class="ad-gate">
+                    <p>Please view this ad to continue using the calculator:</p>
+                    <a href="https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1" target="_blank" class="btn btn-warning">View Ad</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="row mt-5">
+            <div class="col-md-8 mx-auto">
+                <h3>How to Use the Average Calculator</h3>
+                <ol>
+                    <li>Enter your numbers in the input box, separated by commas (e.g., 10, 20, 30).</li>
+                    <li>Click the "Calculate Average" button.</li>
+                    <li>View the calculated average in the result box.</li>
+                    <li>After every 3 uses, view a short ad to continue using the calculator.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google AdSense Placeholder -->
+    <div class="container text-center my-4">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="your-adsense-client-id" data-ad-slot="your-adssense-slot-id" data-ad-format="auto"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-4">
+        <div class="container text-center">
+            <div class="mb-3">
+                <a href="/privacy-policy.html">Privacy Policy</a> |
+                <a href="/terms-of-service.html">Terms of Service</a> |
+                <a href="/about-us.html">About Us</a> |
+                <a href="/contact-us.html">Contact Us: contact@yourwebsite.com</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS and Font Awesome for Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        let usageCount = 0;
+        const maxUsage = 3;
+
+        document.getElementById('averageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (usageCount >= maxUsage) {
+                document.getElementById('adGate').style.display = 'block';
+                return;
+            }
+            const numbersInput = document.getElementById('numbers').value;
+            const numbers = numbersInput.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            if (numbers.length === 0) {
+                alert('Please enter valid numbers.');
+                return;
+            }
+            const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+            const average = sum / numbers.length;
+            document.getElementById('averageResult').textContent = `The average is: ${average.toFixed(2)}`;
+            document.getElementById('result').classList.remove('d-none');
+            usageCount++;
+            if (usageCount >= maxUsage) {
+                document.getElementById('adGate').style.display = 'block';
+            }
+        });
+
+        // Reset usage count after ad click
+        document.querySelector('.ad-gate a').addEventListener('click', function() {
+            usageCount = 0;struers = 0;
+            document.getElementById('adGate').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

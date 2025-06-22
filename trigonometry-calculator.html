@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigonometry Calculator - Sine, Cosine, Tangent & More</title>
+    <meta name="description" content="Calculate trigonometric functions (sine, cosine, tangent, and their inverses) with our free Trigonometry Calculator. Enter an angle or side ratio for accurate results.">
+    <meta name="keywords" content="trigonometry calculator, sine calculator, cosine calculator, tangent calculator, math tool">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Trigonometry Calculator">
+    <meta property="og:description" content="Solve trigonometric functions easily with our Trigonometry Calculator. Get accurate results for sine, cosine, tangent, and more!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/trigonometry-calculator.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trigonometry Calculator">
+    <meta name="twitter:description" content="Solve trigonometric functions easily with our Trigonometry Calculator.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/trigonometry-calculator.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Trigonometry Calculator",
+        "description": "A tool to calculate trigonometric functions (sine, cosine, tangent, and their inverses) based on angle or side ratio inputs.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "MathApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Trigonometry Calculator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Trigonometry Calculator</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="trigForm">
+                <div class="mb-3">
+                    <label for="calculationType" class="form-label">Calculation Type</label>
+                    <select class="form-control" id="calculationType" required>
+                        <option value="sin">Sine (sin)</option>
+                        <option value="cos">Cosine (cos)</option>
+                        <option value="tan">Tangent (tan)</option>
+                        <option value="arcsin">Inverse Sine (arcsin)</option>
+                        <option value="arccos">Inverse Cosine (arccos)</option>
+                        <option value="arctan">Inverse Tangent (arctan)</option>
+                    </select>
+                </div>
+                <div class="mb-3" id="angleInput">
+                    <label for="angle" class="form-label">Angle (degrees)</label>
+                    <input type="number" class="form-control" id="angle" step="0.1" required>
+                </div>
+                <div class="mb-3" id="ratioInput" style="display: none;">
+                    <label for="ratio" class="form-label">Ratio Value (e.g., opposite/hypotenuse for sin)</label>
+                    <input type="number" class="form-control" id="ratio" step="0.01" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Trigonometric Result</h4>
+                <p id="trigResult"></p>
+                <p id="trigSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Trigonometry Calculator</h2>
+            <ol>
+                <li>Select the trigonometric function (sin, cos, tan, or their inverses).</li>
+                <li>Enter an angle in degrees for sin, cos, or tan, or a ratio value for arcsin, arccos, or arctan.</li>
+                <li>Click the "Calculate" button to see your result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the calculator.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Trigonometry Calculator. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Calculator -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Toggle input fields based on calculation type
+        document.getElementById('calculationType').addEventListener('change', function() {
+            const calcType = this.value;
+            const angleInput = document.getElementById('angleInput');
+            const ratioInput = document.getElementById('ratioInput');
+            if (calcType === 'sin' || calcType === 'cos' || calcType === 'tan') {
+                angleInput.style.display = 'block';
+                ratioInput.style.display = 'none';
+                document.getElementById('angle').required = true;
+                document.getElementById('ratio').required = false;
+            } else {
+                angleInput.style.display = 'none';
+                ratioInput.style.display = 'block';
+                document.getElementById('angle').required = false;
+                document.getElementById('ratio').required = true;
+            }
+        });
+
+        document.getElementById('trigForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const calcType = document.getElementById('calculationType').value;
+            let result, summary;
+
+            if (calcType === 'sin' || calcType === 'cos' || calcType === 'tan') {
+                const angle = parseFloat(document.getElementById('angle').value);
+                const rad = angle * Math.PI / 180; // Convert degrees to radians
+                if (calcType === 'sin') {
+                    result = Math.sin(rad);
+                    summary = `The sine of ${angle}° is approximately ${result.toFixed(4)}.`;
+                } else if (calcType === 'cos') {
+                    result = Math.cos(rad);
+                    summary = `The cosine of ${angle}° is approximately ${result.toFixed(4)}.`;
+                } else {
+                    if (Math.abs(Math.cos(rad)) < 0.0001) {
+                        summary = `Error: Tangent is undefined at ${angle}° (cosine is zero).`;
+                    } else {
+                        result = Math.tan(rad);
+                        summary = `The tangent of ${angle}° is approximately ${result.toFixed(4)}.`;
+                    }
+                }
+            } else {
+                const ratio = parseFloat(document.getElementById('ratio').value);
+                if (calcType === 'arcsin') {
+                    if (ratio < -1 || ratio > 1) {
+                        summary = `Error: Arcsin requires a value between -1 and 1.`;
+                    } else {
+                        result = Math.asin(ratio) * 180 / Math.PI;
+                        summary = `The arcsin of ${ratio} is approximately ${result.toFixed(2)}°.`;
+                    }
+                } else if (calcType === 'arccos') {
+                    if (ratio < -1 || ratio > 1) {
+                        summary = `Error: Arccos requires a value between -1 and 1.`;
+                    } else {
+                        result = Math.acos(ratio) * 180 / Math.PI;
+                        summary = `The arccos of ${ratio} is approximately ${result.toFixed(2)}°.`;
+                    }
+                } else {
+                    result = Math.atan(ratio) * 180 / Math.PI;
+                    summary = `The arctan of ${ratio} is approximately ${result.toFixed(2)}°.`;
+                }
+            }
+
+            document.getElementById('trigResult').innerText = summary.includes('Error') ? '' : `Result: ${result.toFixed(4)}`;
+            document.getElementById('trigSummary').innerText = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+    </script>
+</body>
+</html>

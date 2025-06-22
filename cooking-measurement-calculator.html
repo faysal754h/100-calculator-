@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Measurement Converter - Recipe Scaling</title>
+    <meta name="description" content="Convert cooking measurements and scale recipes with our free Cooking Measurement Converter. Convert cups to tablespoons, grams to ounces, and more.">
+    <meta name="keywords" content="cooking measurement converter, recipe scaling, cups to tablespoons, grams to ounces, kitchen calculator">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Cooking Measurement Converter">
+    <meta property="og:description" content="Convert cooking measurements and scale recipes easily with our free Cooking Measurement Converter.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/images/cooking-measurement-converter.jpg">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cooking Measurement Converter">
+    <meta name="twitter:description" content="Simplify your cooking with our Cooking Measurement Converter.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/cooking-measurement-converter.jpg">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Cooking Measurement Converter",
+        "description": "A tool for converting cooking measurements (e.g., cups to tablespoons, grams to ounces) and scaling recipes by adjusting serving sizes.",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .calculator-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e7f3ff;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .ingredient-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .ingredient-row select, .ingredient-row input {
+            flex: 1;
+        }
+        .remove-btn {
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cooking Measurement Converter</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house"></i> Back to Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Cooking Measurement Converter</h1>
+        
+        <!-- Calculator Form -->
+        <div class="calculator-box">
+            <form id="cookingForm">
+                <div class="mb-3">
+                    <label for="operation" class="form-label">Operation</label>
+                    <select class="form-control" id="operation" required>
+                        <option value="convert">Convert Measurement</option>
+                        <option value="scale">Scale Recipe</option>
+                    </select>
+                </div>
+                <!-- Conversion Inputs -->
+                <div id="convertInputs">
+                    <div class="input-group">
+                        <label for="amount" class="form-label">Amount</label>
+                        <input type="number" class="form-control" id="amount" step="0.01" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="fromUnit" class="form-label">From Unit</label>
+                        <select class="form-control" id="fromUnit" required>
+                            <option value="cup">Cup</option>
+                            <option value="tablespoon">Tablespoon</option>
+                            <option value="teaspoon">Teaspoon</option>
+                            <option value="gram">Gram</option>
+                            <option value="ounce">Ounce</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="toUnit" class="form-label">To Unit</label>
+                        <select class="form-control" id="toUnit" required>
+                            <option value="cup">Cup</option>
+                            <option value="tablespoon">Tablespoon</option>
+                            <option value="teaspoon">Teaspoon</option>
+                            <option value="gram">Gram</option>
+                            <option value="ounce">Ounce</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Scaling Inputs -->
+                <div id="scaleInputs" style="display: none;">
+                    <div id="ingredientList">
+                        <div class="ingredient-row">
+                            <input type="text" class="form-control" placeholder="Ingredient Name" required>
+                            <input type="number" class="form-control" placeholder="Amount" step="0.01" min="0" required>
+                            <select class="form-control" required>
+                                <option value="cup">Cup</option>
+                                <option value="tablespoon">Tablespoon</option>
+                                <option value="teaspoon">Teaspoon</option>
+                                <option value="gram">Gram</option>
+                                <option value="ounce">Ounce</option>
+                            </select>
+                            <button type="button" class="btn btn-danger remove-btn" style="display: none;">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary mb-3" id="addIngredient">Add Ingredient</button>
+                    <div class="input-group">
+                        <label for="originalServings" class="form-label">Original Servings</label>
+                        <input type="number" class="form-control" id="originalServings" step="1" min="1" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="newServings" class="form-label">New Servings</label>
+                        <input type="number" class="form-control" id="newServings" step="1" min="1" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Calculate</button>
+            </form>
+
+            <!-- Result Box -->
+            <div class="result-box" id="resultBox">
+                <h4>Cooking Measurement Result</h4>
+                <p id="cookingResult"></p>
+                <p id="cookingSummary"></p>
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-5">
+            <h2>How to Use the Cooking Measurement Converter</h2>
+            <ol>
+                <li>Select an operation: Convert Measurement or Scale Recipe.</li>
+                <li>For conversions, enter the amount and select the from/to units.</li>
+                <li>For scaling, add ingredients with amounts and units, then specify original and new servings.</li>
+                <li>Click "Calculate" to see the result.</li>
+                <li>After 3 calculations, you will be redirected to an ad. Return to continue using the converter.</li>
+            </ol>
+        </div>
+
+        <!-- Google AdSense Placeholder -->
+        <div class="mt-5 text-center">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>© 2025 Cooking Measurement Converter. All rights reserved.</p>
+            <div>
+                <a href="privacy.html" class="text-white mx-2">Privacy Policy</a> |
+                <a href="terms.html" class="text-white mx-2">Terms of Service</a> |
+                <a href="about.html" class="text-white mx-2">About Us</a> |
+                <a href="contact.html" class="text-white mx-2">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Bootstrap 5 JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript for Converter -->
+    <script>
+        let calculationCount = parseInt(localStorage.getItem('calculationCount')) || 0;
+
+        // Conversion factors (approximate for cooking)
+        const conversionFactors = {
+            cup: { cup: 1, tablespoon: 16, teaspoon: 48, gram: 240, ounce: 8 }, // 1 cup = 240g (water), 8oz
+            tablespoon: { cup: 1/16, tablespoon: 1, teaspoon: 3, gram: 15, ounce: 0.5 }, // 1 tbsp = 15g, 0.5oz
+            teaspoon: { cup: 1/48, tablespoon: 1/3, teaspoon: 1, gram: 5, ounce: 0.1667 }, // 1 tsp = 5g, ~0.17oz
+            gram: { cup: 1/240, tablespoon: 1/15, teaspoon: 1/5, gram: 1, ounce: 0.0353 }, // 1g = 0.0353oz
+            ounce: { cup: 1/8, tablespoon: 2, teaspoon: 6, gram: 28.3495, ounce: 1 } // 1oz = 28.35g
+        };
+
+        // Toggle inputs based on operation
+        document.getElementById('operation').addEventListener('change', function() {
+            const operation = this.value;
+            document.getElementById('convertInputs').style.display = operation === 'convert' ? 'block' : 'none';
+            document.getElementById('scaleInputs').style.display = operation === 'scale' ? 'block' : 'none';
+            // Update required fields
+            document.getElementById('amount').required = operation === 'convert';
+            document.getElementById('fromUnit').required = operation === 'convert';
+            document.getElementById('toUnit').required = operation === 'convert';
+            document.getElementById('originalServings').required = operation === 'scale';
+            document.getElementById('newServings').required = operation === 'scale';
+            document.querySelectorAll('#ingredientList input, #ingredientList select').forEach(el => {
+                el.required = operation === 'scale';
+            });
+        });
+
+        // Add new ingredient row
+        document.getElementById('addIngredient').addEventListener('click', function() {
+            const ingredientList = document.getElementById('ingredientList');
+            const newRow = document.createElement('div');
+            newRow.className = 'ingredient-row';
+            newRow.innerHTML = `
+                <input type="text" class="form-control" placeholder="Ingredient Name" required>
+                <input type="number" class="form-control" placeholder="Amount" step="0.01" min="0" required>
+                <select class="form-control" required>
+                    <option value="cup">Cup</option>
+                    <option value="tablespoon">Tablespoon</option>
+                    <option value="teaspoon">Teaspoon</option>
+                    <option value="gram">Gram</option>
+                    <option value="ounce">Ounce</option>
+                </select>
+                <button type="button" class="btn btn-danger remove-btn">Remove</button>
+            `;
+            ingredientList.appendChild(newRow);
+            updateRemoveButtons();
+        });
+
+        // Update remove buttons visibility
+        function updateRemoveButtons() {
+            const rows = document.querySelectorAll('.ingredient-row');
+            rows.forEach((row, index) => {
+                const removeBtn = row.querySelector('.remove-btn');
+                removeBtn.style.display = rows.length > 1 ? 'block' : 'none';
+                removeBtn.onclick = () => row.remove();
+            });
+        }
+
+        document.getElementById('cookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (calculationCount >= 3) {
+                localStorage.setItem('calculationCount', 0); // Reset counter
+                window.location.href = 'https://www.profitableratecpm.com/sg06xga3u?key=d01535ea30668fb5f4c041ec881a67d1'; // Redirect to ad
+                return;
+            }
+
+            const operation = document.getElementById('operation').value;
+            let result, summary;
+
+            if (operation === 'convert') {
+                const amount = parseFloat(document.getElementById('amount').value);
+                const fromUnit = document.getElementById('fromUnit').value;
+                const toUnit = document.getElementById('toUnit').value;
+
+                if (isNaN(amount) || amount <= 0) {
+                    summary = `Error: Amount must be a positive number.`;
+                } else if ((fromUnit === 'gram' && toUnit === 'cup') || (fromUnit === 'ounce' && toUnit === 'cup') ||
+                           (fromUnit === 'cup' && toUnit === 'gram') || (fromUnit === 'cup' && toUnit === 'ounce')) {
+                    summary = `Error: Conversions between volume (cup) and weight (gram, ounce) are approximate and depend on ingredient density.`;
+                } else {
+                    const convertedAmount = amount * conversionFactors[fromUnit][toUnit];
+                    result = convertedAmount.toFixed(2);
+                    summary = `${amount} ${fromUnit} = ${result} ${toUnit}`;
+                }
+            } else if (operation === 'scale') {
+                const ingredients = document.querySelectorAll('.ingredient-row');
+                const originalServings = parseInt(document.getElementById('originalServings').value);
+                const newServings = parseInt(document.getElementById('newServings').value);
+                let errors = [];
+
+                if (isNaN(originalServings) || originalServings <= 0) {
+                    errors.push('Original servings must be a positive integer.');
+                }
+                if (isNaN(newServings) || newServings <= 0) {
+                    errors.push('New servings must be a positive integer.');
+                }
+
+                let ingredientSummary = 'Scaled Ingredients:<br>';
+                ingredients.forEach((row, index) => {
+                    const name = row.children[0].value.trim();
+                    const amount = parseFloat(row.children[1].value);
+                    const unit = row.children[2].value;
+
+                    if (!name) {
+                        errors.push(`Ingredient ${index + 1}: Name is required.`);
+                    } else if (isNaN(amount) || amount <= 0) {
+                        errors.push(`Ingredient ${index + 1}: Amount must be a positive number.`);
+                    } else {
+                        ingredientSummary += `- ${name}: ${amount} ${unit}<br>`;
+                    }
+                });
+
+                if (errors.length > 0) {
+                    summary = `Errors:<br>${errors.join('<br>')}`;
+                } else {
+                    const scaleFactor = newServings / originalServings;
+                    ingredientSummary = `Scaled Ingredients (from ${originalServings} to ${newServings} servings):<br>`;
+                    ingredients.forEach(row => {
+                        const name = row.children[0].value.trim();
+                        const amount = parseFloat(row.children[1].value);
+                        const unit = row.children[2].value;
+                        const scaledAmount = (amount * scaleFactor).toFixed(2);
+                        ingredientSummary += `- ${name}: ${scaledAmount} ${unit}<br>`;
+                    });
+                    summary = ingredientSummary;
+                    result = `Recipe scaled for ${newServings} servings`;
+                }
+            }
+
+            document.getElementById('cookingResult').innerText = summary.includes('Error') ? '' : `Result: ${result}`;
+            document.getElementById('cookingSummary').innerHTML = summary;
+            document.getElementById('resultBox').style.display = 'block';
+
+            calculationCount++;
+            localStorage.setItem('calculationCount', calculationCount);
+        });
+
+        // Initialize remove buttons
+        updateRemoveButtons();
+    </script>
+</body>
+</html>
